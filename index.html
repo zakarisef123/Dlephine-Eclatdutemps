@@ -4,33 +4,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Éclat du Temps | Delphine — Kobido &amp; Acupuncture Esthétique, Genève</title>
+<title>Éclat du Temps | Delphine - Kobido &amp; Acupuncture Esthétique, Genève</title>
 <meta name="description" content="Massage Kobido et acupuncture esthétique à Genève. Un soin naturel, sur-mesure, pour révéler l'éclat de votre visage et vous reconnecter à vous-même.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%2334281f'/%3E%3Ctext x='50' y='66' font-size='56' text-anchor='middle' fill='%23c9a267' font-family='Georgia,serif'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%232e2019'/%3E%3Ctext x='50' y='66' font-size='56' text-anchor='middle' fill='%23b98f5a' font-family='Georgia,serif'%3EE%3C/text%3E%3C/svg%3E">
+<script>
+  /* Google Consent Mode v2 - état par défaut (tout refusé sauf le strict nécessaire)
+     défini avant tout tag tiers, comme l'exige Google pour les visiteurs UE/EEE. */
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    personalization_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
 
 <style>
   :root{
-    --wine:#b8823f;
-    --wine-deep:#4a3826;
-    --gold:#c9a267;
-    --blush:#ece2cb;
-    --cream:#f9f5ec;
-    --ink:#34281f;
-    --ink-soft:#7a6b5c;
-    --line: rgba(74,56,38,.15);
-    --shadow: 0 20px 50px -20px rgba(58,42,24,.22);
+    --wine:#6b4038;
+    --wine-deep:#3c2620;
+    --gold:#b98f5a;
+    --blush:#e4d9c8;
+    --cream:#f8f4ec;
+    --ink:#2e2019;
+    --ink-soft:#7d6f60;
+    --line: rgba(60,38,32,.15);
+    --shadow: 0 20px 50px -20px rgba(60,38,32,.22);
     --radius: 2px;
     --serif: "Fraunces", Georgia, serif;
     --sans: "Work Sans", Arial, sans-serif;
   }
 
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
   body{
     margin:0;
+    max-width:100vw;
+    overflow-x:hidden;
     font-family:var(--sans);
     color:var(--ink);
     background:var(--cream);
@@ -93,7 +109,7 @@
     position:sticky;
     top:0;
     z-index:100;
-    background:rgba(251,246,239,.9);
+    background:rgba(248,244,236,.9);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
@@ -153,8 +169,8 @@
     padding:110px 0 100px;
     overflow:hidden;
     background:
-      radial-gradient(ellipse 60% 60% at 85% 10%, rgba(201,162,103,.18), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 5% 90%, rgba(184,130,63,.12), transparent 60%),
+      radial-gradient(ellipse 60% 60% at 85% 10%, rgba(185,143,90,.18), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 5% 90%, rgba(107,64,56,.12), transparent 60%),
       var(--cream);
   }
   .hero-grid{
@@ -183,7 +199,7 @@
     overflow:hidden;
     aspect-ratio:4/5;
     background:
-      linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 55%, #241a10 100%);
+      linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 55%, #211812 100%);
     box-shadow:var(--shadow);
   }
   .hero-visual:after{
@@ -192,7 +208,7 @@
     pointer-events:none;
     background:
       radial-gradient(circle at 30% 20%, rgba(255,255,255,.10), transparent 45%),
-      radial-gradient(circle at 75% 75%, rgba(201,162,103,.22), transparent 50%);
+      radial-gradient(circle at 75% 75%, rgba(185,143,90,.22), transparent 50%);
   }
   .hero-visual-mark{
     position:absolute;
@@ -231,7 +247,7 @@
   .photo-tile:before{
     content:"";
     position:absolute;inset:0;
-    background:linear-gradient(160deg, rgba(74,56,38,.22), rgba(36,26,16,.32));
+    background:linear-gradient(160deg, rgba(60,38,32,.22), rgba(33,24,18,.32));
     pointer-events:none;
   }
   .hero-badge{
@@ -381,16 +397,16 @@
     content:"";
     position:absolute;
     inset:0;
-    background:radial-gradient(ellipse 60% 60% at 90% 0%, rgba(201,162,103,.16), transparent 60%);
+    background:radial-gradient(ellipse 60% 60% at 90% 0%, rgba(185,143,90,.16), transparent 60%);
   }
   .benefits .section-head h2, .benefits .section-head p{color:var(--blush);}
-  .benefits .section-head p{color:rgba(244,233,222,.75);}
+  .benefits .section-head p{color:rgba(232,221,206,.75);}
   .benefit-grid{
     position:relative;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:2px;
-    background:rgba(244,233,222,.14);
+    background:rgba(232,221,206,.14);
     border-radius:4px;
     overflow:hidden;
   }
@@ -416,7 +432,7 @@
     line-height:1.25;
   }
   .benefit-card p{
-    color:rgba(244,233,222,.72);
+    color:rgba(232,221,206,.72);
     font-size:.95rem;
     margin:0;
   }
@@ -467,7 +483,7 @@
   .price sup{font-size:1rem;margin-left:4px;color:var(--ink-soft);font-family:var(--sans);}
   .service-media{
     position:relative;
-    background:linear-gradient(155deg, var(--wine-deep), #241a10);
+    background:linear-gradient(155deg, var(--wine-deep), #211812);
     min-height:320px;
   }
   .soin-mosaic{
@@ -478,7 +494,7 @@
     position:absolute;inset:0;
     pointer-events:none;
     background:
-      radial-gradient(circle at 70% 30%, rgba(201,162,103,.25), transparent 55%),
+      radial-gradient(circle at 70% 30%, rgba(185,143,90,.25), transparent 55%),
       linear-gradient(0deg, rgba(20,14,8,.75) 0%, rgba(20,14,8,.15) 42%, transparent 62%);
   }
   .service-media .tag{
@@ -716,8 +732,8 @@
 
   /* ---------- Footer ---------- */
   footer{
-    background:#241a10;
-    color:rgba(244,233,222,.75);
+    background:#211812;
+    color:rgba(232,221,206,.75);
     padding:70px 0 30px;
   }
   .footer-grid{
@@ -725,7 +741,7 @@
     grid-template-columns:1.4fr 1fr 1fr;
     gap:50px;
     padding-bottom:50px;
-    border-bottom:1px solid rgba(244,233,222,.14);
+    border-bottom:1px solid rgba(232,221,206,.14);
   }
   .footer-logo{font-family:var(--serif);font-size:1.5rem;color:#fff;margin-bottom:14px;}
   .footer-logo-img{height:88px;width:auto;margin-bottom:18px;}
@@ -748,14 +764,16 @@
     flex-wrap:wrap;
     gap:12px;
     font-size:.78rem;
-    color:rgba(244,233,222,.5);
+    color:rgba(232,221,206,.5);
   }
   .footer-bottom a:hover{color:var(--gold);}
 
   /* ---------- Responsive ---------- */
-  @media (max-width: 900px){
+  @media (max-width: 1220px){
     .nav-links{display:none;}
     .nav-toggle{display:flex;}
+  }
+  @media (max-width: 900px){
     .hero-grid{grid-template-columns:1fr;}
     .hero-visual-wrap{order:-1;max-width:420px;margin:0 auto;}
     .hero-badge{left:12px;}
@@ -782,6 +800,83 @@
     .nav-cta{gap:10px;}
     .nav-cta .btn-primary{display:none;}
   }
+
+  /* ---------- Consentement RGPD ---------- */
+  .consent-banner{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:300;
+    background:var(--wine-deep);
+    color:var(--blush);
+    padding:20px 24px;
+    box-shadow:0 -12px 30px -10px rgba(33,24,18,.35);
+  }
+  .consent-banner-inner{
+    max-width:1140px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .consent-text{margin:0;font-size:.88rem;line-height:1.6;max-width:640px;color:rgba(232,221,206,.92);}
+  .consent-text a{color:var(--gold);text-decoration:underline;}
+  .consent-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn-sm{padding:11px 20px;font-size:.74rem;}
+  .consent-banner .btn-ghost{border-color:rgba(232,221,206,.4);color:var(--blush);}
+  .consent-banner .btn-ghost:hover{background:rgba(232,221,206,.12);color:#fff;}
+
+  .consent-modal{
+    position:fixed;
+    inset:0;
+    z-index:310;
+    background:rgba(33,24,18,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .consent-modal[hidden]{display:none;}
+  .consent-modal-card{
+    background:var(--cream);
+    border-radius:8px;
+    max-width:560px;
+    width:100%;
+    max-height:86vh;
+    overflow-y:auto;
+    padding:36px;
+    box-shadow:var(--shadow);
+  }
+  .consent-modal-card h3{font-size:1.5rem;margin-bottom:14px;}
+  .consent-modal-card > p{color:var(--ink-soft);font-size:.92rem;margin-bottom:22px;}
+  .consent-category{border-top:1px solid var(--line);padding:16px 0;}
+  .consent-category-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .consent-category-head strong{font-family:var(--serif);font-size:1.02rem;color:var(--wine-deep);}
+  .consent-category p{margin:6px 0 0;font-size:.82rem;color:var(--ink-soft);line-height:1.6;}
+  .consent-locked{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .consent-legal{font-size:.78rem;color:var(--ink-soft);line-height:1.7;border-top:1px solid var(--line);padding-top:16px;margin-top:6px;}
+  .consent-modal .consent-actions{margin-top:24px;justify-content:flex-end;}
+
+  .switch{position:relative;display:inline-block;width:42px;height:24px;flex-shrink:0;}
+  .switch input{opacity:0;width:0;height:0;}
+  .switch .slider{position:absolute;inset:0;background:rgba(122,107,96,.3);border-radius:999px;cursor:pointer;transition:background .2s ease;}
+  .switch .slider:before{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s ease;}
+  .switch input:checked + .slider{background:var(--wine);}
+  .switch input:checked + .slider:before{transform:translateX(18px);}
+  .switch input:disabled + .slider{opacity:.6;cursor:not-allowed;}
+
+  .field-consent{margin-top:4px;}
+  .consent-checkbox{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:var(--ink-soft);line-height:1.5;cursor:pointer;}
+  .consent-checkbox input{margin-top:3px;flex-shrink:0;}
+  .consent-checkbox a{color:var(--wine);text-decoration:underline;}
+
+  @media (max-width:520px){
+    .consent-banner-inner{flex-direction:column;align-items:stretch;}
+    .consent-actions{justify-content:stretch;}
+    .consent-actions .btn{flex:1;}
+    .consent-modal-card{padding:26px 22px;}
+  }
 </style>
 </head>
 <body>
@@ -789,7 +884,7 @@
 <header>
   <div class="nav container">
     <a href="#top" class="logo">
-      <img src="images/logo.png" alt="Éclat du Temps — Soin du visage" class="logo-img" onerror="this.remove(); document.getElementById('logoText').style.display='inline';">
+      <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Soin du visage" class="logo-img" onerror="this.remove(); document.getElementById('logoText').style.display='inline';">
       <span id="logoText" style="display:none;">Éclat <span>du Temps</span></span>
     </a>
     <nav class="nav-links" id="navLinks">
@@ -811,16 +906,16 @@
 
 <main id="top">
 
-  <!-- 1. HERO — accroche + valeur + premier appel à l'action -->
+  <!-- 1. HERO - accroche + valeur + premier appel à l'action -->
   <section class="hero" style="padding-top:70px;">
     <div class="container">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow">Kobido &amp; Acupuncture Esthétique — Genève</span>
+          <span class="eyebrow">Kobido &amp; Acupuncture Esthétique - Genève</span>
           <h1>L'art de révéler <em>votre beauté</em> naturellement</h1>
           <p class="lede">
             Des soins d'exception pour préserver l'éclat de votre visage tout en vous offrant
-            un véritable moment de reconnexion à vous-même — sans méthode invasive.
+            un véritable moment de reconnexion à vous-même - sans méthode invasive.
           </p>
           <div class="hero-actions">
             <a href="#reserver" class="btn btn-primary">Réserver mon soin</a>
@@ -835,7 +930,7 @@
           </div>
           <div class="hero-badge">
             <span class="num">130</span>
-            <span class="txt">CHF — Massage Kobido &amp; Acupuncture Esthétique, protocole complet</span>
+            <span class="txt">CHF - Massage Kobido &amp; Acupuncture Esthétique, protocole complet</span>
           </div>
         </div>
       </div>
@@ -855,7 +950,7 @@
     </div>
   </div>
 
-  <!-- 2. BIENFAITS — ce que la cliente y gagne, en un coup d'œil -->
+  <!-- 2. BIENFAITS - ce que la cliente y gagne, en un coup d'œil -->
   <section class="benefits" id="bienfaits">
     <div class="container">
       <div class="section-head center">
@@ -868,7 +963,7 @@
           <div class="photo-tile benefit-photo">
             <img src="images/bienfait-1.jpg" alt="Éclat du teint après un soin Kobido" loading="lazy" onerror="this.remove()">
           </div>
-          <span class="idx">01 — Éclat</span>
+          <span class="idx">01 - Éclat</span>
           <h3>Un teint lumineux</h3>
           <p>La stimulation de la microcirculation et de la régénération cellulaire améliore
           la texture de la peau et redonne de l'éclat au teint.</p>
@@ -877,7 +972,7 @@
           <div class="photo-tile benefit-photo">
             <img src="images/bienfait-2.jpg" alt="Moment de relaxation pendant le soin" loading="lazy" onerror="this.remove()">
           </div>
-          <span class="idx">02 — Relâchement</span>
+          <span class="idx">02 - Relâchement</span>
           <h3>Une relaxation profonde</h3>
           <p>Mouvements doux, pressions ciblées sur les points d'acupression : les tensions du
           visage et des mâchoires se relâchent, le stress s'apaise durablement.</p>
@@ -886,7 +981,7 @@
           <div class="photo-tile benefit-photo">
             <img src="images/bienfait-3.jpg" alt="Ovale du visage raffermi" loading="lazy" onerror="this.remove()">
           </div>
-          <span class="idx">03 — Fermeté</span>
+          <span class="idx">03 - Fermeté</span>
           <h3>Un ovale redessiné</h3>
           <p>La stimulation naturelle du collagène et de l'élastine raffermit la peau et
           restaure la fermeté des muscles du visage, sans chirurgie.</p>
@@ -895,7 +990,7 @@
     </div>
   </section>
 
-  <!-- 3. PHILOSOPHIE — pourquoi cette approche, la confiance -->
+  <!-- 3. PHILOSOPHIE - pourquoi cette approche, la confiance -->
   <section class="philosophy" id="philosophie">
     <div class="container philosophy-grid">
       <div class="philosophy-visual">
@@ -907,7 +1002,7 @@
         <p class="lead">
           Le Kobido et l'acupuncture esthétique stimulent naturellement les mécanismes de la peau,
           favorisent son éclat, détendent les tensions du visage et procurent une profonde
-          sensation de bien-être — sans recourir à des méthodes invasives.
+          sensation de bien-être - sans recourir à des méthodes invasives.
         </p>
         <p>
           Dans un monde où tout va vite, je vous invite à ralentir. Offrez-vous une expérience
@@ -927,13 +1022,13 @@
         <div class="signature">
           « Mon intention n'est pas seulement d'embellir votre peau, mais de révéler la lumière
           qui est déjà en vous. Votre beauté est naturelle. Ensemble, révélons-la. »
-          <span class="who">— Delphine</span>
+          <span class="who">- Delphine</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. TECHNIQUES — comment ça marche, l'expertise qui justifie le soin -->
+  <!-- 4. TECHNIQUES - comment ça marche, l'expertise qui justifie le soin -->
   <section class="duo" id="techniques">
     <div class="container">
       <div class="section-head">
@@ -948,7 +1043,7 @@
           <p>
             Né il y a plus de 500 ans pour préserver l'éclat d'une impératrice japonaise, le
             Kobido enchaîne percussions, pressions des méridiens, lissages et pincements pour
-            rééquilibrer les fluides et l'énergie du visage — un véritable lifting naturel.
+            rééquilibrer les fluides et l'énergie du visage - un véritable lifting naturel.
           </p>
         </div>
         <div class="duo-card">
@@ -964,7 +1059,7 @@
     </div>
   </section>
 
-  <!-- 5. DÉROULEMENT — à quoi s'attendre, étape par étape -->
+  <!-- 5. DÉROULEMENT - à quoi s'attendre, étape par étape -->
   <section class="process" id="deroulement">
     <div class="container">
       <div class="section-head center">
@@ -1009,7 +1104,7 @@
     </div>
   </section>
 
-  <!-- 6. SOIN / TARIF — l'offre concrète, maintenant justifiée -->
+  <!-- 6. SOIN / TARIF - l'offre concrète, maintenant justifiée -->
   <section class="service" id="soin">
     <div class="container">
       <div class="section-head">
@@ -1024,7 +1119,7 @@
             Associer le massage Kobido et l'acupuncture esthétique crée un protocole anti-âge
             et raffermissant très puissant. Ces deux techniques japonaise et chinoise se
             complètent parfaitement pour stimuler le collagène, détendre les tensions
-            musculaires et lifter l'ovale du visage — sans chirurgie.
+            musculaires et lifter l'ovale du visage - sans chirurgie.
           </p>
           <ul class="service-steps">
             <li><span class="step-n">I.</span><span>Insertion de fines aiguilles sur les méridiens et muscles du visage, qui stimulent naturellement la production d'élastine et de collagène.</span></li>
@@ -1041,10 +1136,10 @@
         </div>
         <div class="service-media">
           <div class="photo-mosaic soin-mosaic">
-            <div class="photo-tile"><img src="images/soin-1.jpg" alt="Massage Kobido — soin du visage" loading="lazy" onerror="this.remove()"></div>
-            <div class="photo-tile"><img src="images/soin-2.jpg" alt="Acupuncture esthétique — protocole anti-âge" loading="lazy" onerror="this.remove()"></div>
-            <div class="photo-tile"><img src="images/soin-3.jpg" alt="Institut Éclat du Temps — matériel de soin" loading="lazy" onerror="this.remove()"></div>
-            <div class="photo-tile"><img src="images/soin-4.jpg" alt="Massage Kobido — drainage du visage" loading="lazy" onerror="this.remove()"></div>
+            <div class="photo-tile"><img src="images/soin-1.jpg" alt="Massage Kobido - soin du visage" loading="lazy" onerror="this.remove()"></div>
+            <div class="photo-tile"><img src="images/soin-2.jpg" alt="Acupuncture esthétique - protocole anti-âge" loading="lazy" onerror="this.remove()"></div>
+            <div class="photo-tile"><img src="images/soin-3.jpg" alt="Institut Éclat du Temps - matériel de soin" loading="lazy" onerror="this.remove()"></div>
+            <div class="photo-tile"><img src="images/soin-4.jpg" alt="Massage Kobido - drainage du visage" loading="lazy" onerror="this.remove()"></div>
             <div class="photo-tile"><img src="images/soin-5.jpg" alt="Cabine de soin, ambiance feutrée" loading="lazy" onerror="this.remove()"></div>
             <div class="photo-tile"><img src="images/soin-6.jpg" alt="Résultat du protocole Kobido & acupuncture esthétique" loading="lazy" onerror="this.remove()"></div>
           </div>
@@ -1056,7 +1151,7 @@
     </div>
   </section>
 
-  <!-- 7. TÉMOIGNAGE — preuve sociale, juste avant la décision -->
+  <!-- 7. TÉMOIGNAGE - preuve sociale, juste avant la décision -->
   <section class="testimonial">
     <div class="container testimonial-inner">
       <blockquote>
@@ -1068,13 +1163,13 @@
     </div>
   </section>
 
-  <!-- 8. RÉSERVATION — l'action de conversion, en dernière étape -->
+  <!-- 8. RÉSERVATION - l'action de conversion, en dernière étape -->
   <section class="service booking" id="reserver">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Réserver en ligne</span>
         <h2>Choisissez votre créneau</h2>
-        <p>Sélectionnez un jour puis un horaire disponible pour votre séance de Massage Kobido &amp; Acupuncture Esthétique — 130 CHF, environ 1h.</p>
+        <p>Sélectionnez un jour puis un horaire disponible pour votre séance de Massage Kobido &amp; Acupuncture Esthétique - 130 CHF, environ 1h.</p>
       </div>
 
       <div class="booking-panel">
@@ -1089,7 +1184,7 @@
           <p class="booking-recap" id="bookingRecap">Sélectionnez une date et un horaire pour réserver votre soin.</p>
           <form id="bookingForm">
             <div class="form-fields">
-              <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous — Éclat du Temps">
+              <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous - Éclat du Temps">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" id="fieldReplyTo" name="_replyto" value="">
@@ -1112,6 +1207,12 @@
                 <label for="bkMsg">Message (facultatif)</label>
                 <textarea id="bkMsg" name="Message" rows="3"></textarea>
               </div>
+              <div class="field field-consent">
+                <label class="consent-checkbox">
+                  <input type="checkbox" id="bkConsent" required>
+                  <span>J'accepte que mes données (nom, email, téléphone) soient utilisées pour traiter ma demande de rendez-vous, conformément à la <a href="#" id="bkConsentLink">politique de confidentialité</a>.</span>
+                </label>
+              </div>
               <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
             </div>
           </form>
@@ -1133,7 +1234,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="images/logo.png" alt="Éclat du Temps — Soin du visage" class="footer-logo-img" onerror="this.remove(); document.getElementById('footerLogoText').style.display='block';">
+        <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Soin du visage" class="footer-logo-img" onerror="this.remove(); document.getElementById('footerLogoText').style.display='block';">
         <div class="footer-logo" id="footerLogoText" style="display:none;">Éclat du Temps</div>
         <p>
           Institut de beauté à Genève, spécialisé en massage Kobido et acupuncture esthétique.
@@ -1144,7 +1245,7 @@
         <h4>Contact</h4>
         <ul>
           <li>Genève, Suisse</li>
-          <li><a href="tel:+41000000000">+41 00 000 00 00</a></li>
+          <li><a href="tel:+41782654925">+41 78 265 49 25</a></li>
           <li><a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a></li>
         </ul>
       </div>
@@ -1161,11 +1262,84 @@
       </div>
     </div>
     <div class="footer-bottom container" style="padding-left:0;padding-right:0;">
-      <span>© <span id="year"></span> Éclat du Temps — Delphine. Tous droits réservés.</span>
-      <span><a href="#top">Mentions légales</a> · <a href="#top">Confidentialité</a></span>
+      <span>© <span id="year"></span> Éclat du Temps - Delphine. Tous droits réservés.</span>
+      <span><a href="#top">Mentions légales</a> · <a href="#" id="footerConsentLink">Confidentialité &amp; cookies</a></span>
     </div>
   </div>
 </footer>
+
+<!-- Bandeau de consentement RGPD -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <div class="consent-banner-inner">
+    <p class="consent-text">
+      Nous utilisons des cookies et services essentiels au fonctionnement du site (calendrier de
+      réservation), ainsi que des polices Google et, si vous l'acceptez, des outils de mesure
+      d'audience. <a href="#" id="consentDetailsLink">Personnaliser mes choix</a>
+    </p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentRefuse">Refuser</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="consentCustomize">Personnaliser</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Panneau de préférences de confidentialité -->
+<div id="consentModal" class="consent-modal" hidden>
+  <div class="consent-modal-card">
+    <h3>Préférences de confidentialité</h3>
+    <p>
+      Éclat du Temps respecte votre vie privée. Choisissez ci-dessous les catégories que vous
+      acceptez. Vous pouvez modifier ces choix à tout moment via le lien « Confidentialité &amp;
+      cookies » en bas de page.
+    </p>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Nécessaire</strong>
+        <span class="consent-locked">Toujours actif</span>
+      </div>
+      <p>Fonctionnement du site et du calendrier de réservation (mémorisation des créneaux pris). Ne peut pas être désactivé.</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Fonctionnel</strong>
+        <label class="switch"><input type="checkbox" id="consentFunctional"><span class="slider"></span></label>
+      </div>
+      <p>Chargement des polices Google Fonts pour l'affichage typographique du site (transfert d'adresse IP vers Google).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Mesure d'audience</strong>
+        <label class="switch"><input type="checkbox" id="consentAnalytics"><span class="slider"></span></label>
+      </div>
+      <p>Non utilisé actuellement sur ce site. Réservé pour de futurs outils de statistiques (ex. Google Analytics).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Marketing</strong>
+        <label class="switch"><input type="checkbox" id="consentMarketing"><span class="slider"></span></label>
+      </div>
+      <p>Non utilisé actuellement sur ce site. Réservé pour de futures campagnes publicitaires.</p>
+    </div>
+
+    <p class="consent-legal">
+      Responsable du traitement : Delphine — Éclat du Temps, Genève. Les informations transmises
+      via le formulaire de réservation (nom, email, téléphone) servent uniquement à confirmer
+      votre rendez-vous et ne sont jamais revendues à des tiers. Vous pouvez demander l'accès, la
+      rectification ou la suppression de vos données à tout moment à
+      <a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a>.
+    </p>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentSave">Enregistrer mes choix</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAcceptAll">Tout accepter</button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -1175,7 +1349,7 @@
   toggle.addEventListener('click', function(){
     var open = links.style.display === 'flex';
     links.style.display = open ? 'none' : 'flex';
-    links.style.cssText += open ? '' : 'position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#f9f5ec;padding:20px 24px;border-bottom:1px solid rgba(74,56,38,.15);gap:16px;';
+    links.style.cssText += open ? '' : 'position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#f8f4ec;padding:20px 24px;border-bottom:1px solid rgba(60,38,32,.15);gap:16px;';
   });
   links.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){
@@ -1184,12 +1358,118 @@
   });
 </script>
 
+<!-- Gestion du consentement RGPD (bandeau + Google Consent Mode v2) -->
+<script>
+(function(){
+  var CONSENT_KEY = 'edt_consent_v1';
+  var DEFAULTS = { necessary: true, functional: false, analytics: false, marketing: false };
+
+  var banner = document.getElementById('consentBanner');
+  var modal = document.getElementById('consentModal');
+  var toggleFunctional = document.getElementById('consentFunctional');
+  var toggleAnalytics = document.getElementById('consentAnalytics');
+  var toggleMarketing = document.getElementById('consentMarketing');
+
+  function loadStored(){
+    try{
+      var raw = localStorage.getItem(CONSENT_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+
+  function loadGoogleFonts(){
+    if (document.getElementById('gfontsStylesheet')) return;
+    var pre1 = document.createElement('link');
+    pre1.rel = 'preconnect'; pre1.href = 'https://fonts.googleapis.com';
+    var pre2 = document.createElement('link');
+    pre2.rel = 'preconnect'; pre2.href = 'https://fonts.gstatic.com'; pre2.crossOrigin = 'anonymous';
+    var sheet = document.createElement('link');
+    sheet.id = 'gfontsStylesheet'; sheet.rel = 'stylesheet';
+    sheet.href = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap';
+    document.head.appendChild(pre1);
+    document.head.appendChild(pre2);
+    document.head.appendChild(sheet);
+  }
+
+  function applyConsent(state){
+    if (state.functional) loadGoogleFonts();
+    if (window.gtag){
+      gtag('consent', 'update', {
+        analytics_storage: state.analytics ? 'granted' : 'denied',
+        ad_storage: state.marketing ? 'granted' : 'denied',
+        ad_user_data: state.marketing ? 'granted' : 'denied',
+        ad_personalization: state.marketing ? 'granted' : 'denied',
+        personalization_storage: state.marketing ? 'granted' : 'denied'
+      });
+    }
+  }
+
+  function hideBanner(){ banner.hidden = true; }
+  function showBanner(){ banner.hidden = false; }
+  function openModal(prefill){
+    toggleFunctional.checked = !!prefill.functional;
+    toggleAnalytics.checked = !!prefill.analytics;
+    toggleMarketing.checked = !!prefill.marketing;
+    modal.hidden = false;
+  }
+  function closeModal(){ modal.hidden = true; }
+
+  function saveConsent(state){
+    try{ localStorage.setItem(CONSENT_KEY, JSON.stringify(Object.assign({}, state, { ts: Date.now() }))); }catch(e){}
+    applyConsent(state);
+    hideBanner();
+    closeModal();
+  }
+
+  var stored = loadStored();
+  if (stored){
+    applyConsent(stored);
+  } else {
+    showBanner();
+  }
+
+  document.getElementById('consentAccept').addEventListener('click', function(){
+    saveConsent({ necessary: true, functional: true, analytics: true, marketing: true });
+  });
+  document.getElementById('consentRefuse').addEventListener('click', function(){
+    saveConsent({ necessary: true, functional: false, analytics: false, marketing: false });
+  });
+  document.getElementById('consentAcceptAll').addEventListener('click', function(){
+    saveConsent({ necessary: true, functional: true, analytics: true, marketing: true });
+  });
+  document.getElementById('consentSave').addEventListener('click', function(){
+    saveConsent({
+      necessary: true,
+      functional: toggleFunctional.checked,
+      analytics: toggleAnalytics.checked,
+      marketing: toggleMarketing.checked
+    });
+  });
+
+  [document.getElementById('consentCustomize'), document.getElementById('consentDetailsLink'),
+   document.getElementById('footerConsentLink'), document.getElementById('bkConsentLink')].forEach(function(el){
+    if (!el) return;
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(loadStored() || DEFAULTS);
+    });
+  });
+
+  modal.addEventListener('click', function(e){
+    if (e.target === modal){
+      closeModal();
+      if (!loadStored()) showBanner();
+    }
+  });
+})();
+</script>
+
 <script>
 (function(){
   // ---- Configuration ----------------------------------------------------
   // Adresse email de l'institut : reçoit chaque demande de rendez-vous via FormSubmit.
   // /!\ Première utilisation : FormSubmit envoie un email de confirmation à cette adresse
-  // avec un lien "Activate Form" — il faut cliquer dessus une fois pour que les envois
+  // avec un lien "Activate Form" - il faut cliquer dessus une fois pour que les envois
   // suivants arrivent automatiquement (voir spam si besoin).
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/Eclatdutemps@hotmail.com';
 
@@ -1330,7 +1610,7 @@
     bookingPanel.classList.remove('empty');
     var label = WEEKDAYS[selectedDay.getDay()] + ' ' + selectedDay.getDate() + ' ' +
                 MONTHS[selectedDay.getMonth()] + ' ' + selectedDay.getFullYear();
-    recap.textContent = 'Massage Kobido & Acupuncture Esthétique — ' + label + ' à ' + selectedTime;
+    recap.textContent = 'Massage Kobido & Acupuncture Esthétique - ' + label + ' à ' + selectedTime;
     document.getElementById('fieldDate').value = label;
     document.getElementById('fieldTime').value = selectedTime;
     formStatus.className = 'form-status';
