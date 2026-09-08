@@ -917,6 +917,7 @@
     display:grid;
     grid-template-columns:1fr 1.2fr;
     align-items:stretch;
+    height:320px;
     border:1px solid var(--line);
     border-radius:8px;
     background:#fff;
@@ -962,7 +963,7 @@
   }
   @media (max-width:700px){
     .section-preview,
-    .previews-list .section-preview:nth-child(even){grid-template-columns:1fr;}
+    .previews-list .section-preview:nth-child(even){grid-template-columns:1fr;height:auto;}
     .previews-list .section-preview:nth-child(even) .section-preview-photo{order:0;}
     .section-preview-photo{min-height:180px;}
     .section-preview-body{padding:28px 26px;}
