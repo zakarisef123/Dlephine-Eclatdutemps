@@ -522,10 +522,8 @@
   /* ---------- Booking / calendar ---------- */
   .booking{border-top:1px solid var(--line);}
   .booking-panel{
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:40px;
-    align-items:flex-start;
+    max-width:760px;
+    margin:0 auto;
   }
   .booking-calendar{
     background:#fff;
@@ -604,14 +602,46 @@
     padding:30px 10px;
   }
 
+  .booking-modal{
+    position:fixed;
+    inset:0;
+    z-index:250;
+    background:rgba(33,24,18,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .booking-modal[hidden]{display:none;}
   .booking-form{
     background:var(--blush);
     border:1px solid var(--line);
-    border-radius:6px;
-    padding:34px;
-    position:sticky;
-    top:110px;
+    border-radius:8px;
+    padding:40px 34px 34px;
+    max-width:480px;
+    width:100%;
+    max-height:88vh;
+    overflow-y:auto;
+    box-shadow:var(--shadow);
+    position:relative;
   }
+  .booking-modal-close{
+    position:absolute;
+    top:12px;right:12px;
+    width:34px;height:34px;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    font-size:1.5rem;
+    line-height:1;
+    cursor:pointer;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s ease,color .2s ease;
+  }
+  .booking-modal-close:hover{background:rgba(60,38,32,.08);color:var(--wine-deep);}
   .booking-recap{
     font-family:var(--serif);
     font-size:1.12rem;
@@ -621,7 +651,6 @@
     padding-bottom:18px;
     border-bottom:1px solid var(--line);
   }
-  .booking-form.empty .form-fields{display:none;}
   .field{margin-bottom:16px;}
   .field label{
     display:block;
@@ -783,8 +812,6 @@
     .benefit-grid{grid-template-columns:1fr;}
     .service-card{grid-template-columns:1fr;}
     .service-media{min-height:220px;}
-    .booking-panel{grid-template-columns:1fr;}
-    .booking-form{position:static;}
     .duo-grid{grid-template-columns:1fr;}
     .process-grid{grid-template-columns:1fr 1fr;gap:30px 24px;}
     .footer-grid{grid-template-columns:1fr;gap:34px;}
@@ -1179,55 +1206,59 @@
           <h4 style="margin-top:28px;">2. Choisissez un horaire</h4>
           <div class="slot-grid" id="slotGrid"></div>
         </div>
-
-        <div class="booking-form empty" id="bookingPanel">
-          <p class="booking-recap" id="bookingRecap">Sélectionnez une date et un horaire pour réserver votre soin.</p>
-          <form id="bookingForm">
-            <div class="form-fields">
-              <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous - Éclat du Temps">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" id="fieldReplyTo" name="_replyto" value="">
-              <input type="hidden" id="fieldDate" name="Date souhaitée" value="">
-              <input type="hidden" id="fieldTime" name="Heure souhaitée" value="">
-              <input type="hidden" name="Soin" value="Massage Kobido &amp; Acupuncture Esthétique (130 CHF)">
-              <div class="field">
-                <label for="bkName">Nom complet</label>
-                <input type="text" id="bkName" name="Nom" required>
-              </div>
-              <div class="field">
-                <label for="bkEmail">Email</label>
-                <input type="email" id="bkEmail" name="Email" required>
-              </div>
-              <div class="field">
-                <label for="bkPhone">Téléphone</label>
-                <input type="tel" id="bkPhone" name="Téléphone" required>
-              </div>
-              <div class="field">
-                <label for="bkMsg">Message (facultatif)</label>
-                <textarea id="bkMsg" name="Message" rows="3"></textarea>
-              </div>
-              <div class="field field-consent">
-                <label class="consent-checkbox">
-                  <input type="checkbox" id="bkConsent" required>
-                  <span>J'accepte que mes données (nom, email, téléphone) soient utilisées pour traiter ma demande de rendez-vous, conformément à la <a href="#" id="bkConsentLink">politique de confidentialité</a>.</span>
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
-            </div>
-          </form>
-          <p class="form-status" id="formStatus"></p>
-          <p class="form-note">
-            Votre demande est transmise directement par email à l'institut. Une fois envoyée,
-            ce créneau est réservé et n'apparaît plus disponible. Delphine confirme chaque
-            rendez-vous par retour d'email ou de téléphone.
-          </p>
-        </div>
       </div>
     </div>
   </section>
 
 </main>
+
+<!-- Formulaire de réservation en pop-up, une fois le créneau choisi -->
+<div class="booking-modal" id="bookingModal" hidden>
+  <div class="booking-form" id="bookingPanel">
+    <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Fermer">&times;</button>
+    <p class="booking-recap" id="bookingRecap">Sélectionnez une date et un horaire pour réserver votre soin.</p>
+    <form id="bookingForm">
+      <div class="form-fields">
+        <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous - Éclat du Temps">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" id="fieldReplyTo" name="_replyto" value="">
+        <input type="hidden" id="fieldDate" name="Date souhaitée" value="">
+        <input type="hidden" id="fieldTime" name="Heure souhaitée" value="">
+        <input type="hidden" name="Soin" value="Massage Kobido &amp; Acupuncture Esthétique (130 CHF)">
+        <div class="field">
+          <label for="bkName">Nom complet</label>
+          <input type="text" id="bkName" name="Nom" required>
+        </div>
+        <div class="field">
+          <label for="bkEmail">Email</label>
+          <input type="email" id="bkEmail" name="Email" required>
+        </div>
+        <div class="field">
+          <label for="bkPhone">Téléphone</label>
+          <input type="tel" id="bkPhone" name="Téléphone" required>
+        </div>
+        <div class="field">
+          <label for="bkMsg">Message (facultatif)</label>
+          <textarea id="bkMsg" name="Message" rows="3"></textarea>
+        </div>
+        <div class="field field-consent">
+          <label class="consent-checkbox">
+            <input type="checkbox" id="bkConsent" required>
+            <span>J'accepte que mes données (nom, email, téléphone) soient utilisées pour traiter ma demande de rendez-vous, conformément à la <a href="#" id="bkConsentLink">politique de confidentialité</a>.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
+      </div>
+    </form>
+    <p class="form-status" id="formStatus"></p>
+    <p class="form-note">
+      Votre demande est transmise directement par email à l'institut. Une fois envoyée,
+      ce créneau est réservé et n'apparaît plus disponible. Delphine confirme chaque
+      rendez-vous par retour d'email ou de téléphone.
+    </p>
+  </div>
+</div>
 
 <!-- FOOTER / CONTACT -->
 <footer id="contact">
@@ -1498,12 +1529,20 @@
 
   var dayStrip = document.getElementById('dayStrip');
   var slotGrid = document.getElementById('slotGrid');
-  var bookingPanel = document.getElementById('bookingPanel');
+  var bookingModal = document.getElementById('bookingModal');
   var bookingForm = document.getElementById('bookingForm');
   var recap = document.getElementById('bookingRecap');
   var formStatus = document.getElementById('formStatus');
 
   if (!dayStrip || !slotGrid || !bookingForm) return;
+
+  function openBookingModal(){ bookingModal.hidden = false; }
+  function closeBookingModal(){ bookingModal.hidden = true; }
+
+  document.getElementById('bookingModalClose').addEventListener('click', closeBookingModal);
+  bookingModal.addEventListener('click', function(e){
+    if (e.target === bookingModal) closeBookingModal();
+  });
 
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
   function dateKey(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
@@ -1607,7 +1646,6 @@
 
   function showForm(){
     if (!selectedDay || !selectedTime) return;
-    bookingPanel.classList.remove('empty');
     var label = WEEKDAYS[selectedDay.getDay()] + ' ' + selectedDay.getDate() + ' ' +
                 MONTHS[selectedDay.getMonth()] + ' ' + selectedDay.getFullYear();
     recap.textContent = 'Massage Kobido & Acupuncture Esthétique - ' + label + ' à ' + selectedTime;
@@ -1615,7 +1653,7 @@
     document.getElementById('fieldTime').value = selectedTime;
     formStatus.className = 'form-status';
     formStatus.textContent = '';
-    bookingPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    openBookingModal();
   }
 
   renderDays();
@@ -1653,11 +1691,13 @@
       selectedTime = null;
       renderDays();
       renderSlots();
-      bookingPanel.classList.add('empty');
-      recap.textContent = 'Sélectionnez une date et un horaire pour réserver votre soin.';
+      setTimeout(function(){
+        closeBookingModal();
+        recap.textContent = 'Sélectionnez une date et un horaire pour réserver votre soin.';
+      }, 2500);
     }).catch(function(){
       formStatus.className = 'form-status show err';
-      formStatus.textContent = "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au 00 000 00 00 ou par email.";
+      formStatus.textContent = "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email.";
     }).finally(function(){
       submitBtn.disabled = false;
       submitBtn.textContent = 'Envoyer ma demande';
