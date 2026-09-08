@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Techniques - Kobido &amp; Acupuncture Esthétique | Éclat du Temps</title>
+<meta name="description" content="Le Massage Kobido japonais et l'Acupuncture Esthétique chinoise : deux techniques millénaires réunies dans un seul protocole anti-âge.">
+<link rel="icon" type="image/png" href="LOGO DELPHINE.png">
+<link rel="apple-touch-icon" href="LOGO DELPHINE.png">
+<link rel="stylesheet" href="style.css">
+<script>
+  /* Google Consent Mode v2 - état par défaut (tout refusé sauf le strict nécessaire)
+     défini avant tout tag tiers, comme l'exige Google pour les visiteurs UE/EEE. */
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    personalization_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <a href="index.html" class="logo">
+      <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Soin du visage" class="logo-img" onerror="this.remove(); document.getElementById('logoText').style.display='inline';">
+      <span id="logoText" style="display:none;">Éclat <span>du Temps</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="bienfaits.html">Bienfaits</a>
+      <a href="philosophie.html">Philosophie</a>
+      <a href="techniques.html">Techniques</a>
+      <a href="soin.html">Le Soin</a>
+      <a href="#" class="js-book-btn">Réserver</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-primary js-book-btn" style="padding:12px 26px;">Prendre rendez-vous</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Accueil</a> / Techniques</div>
+      <span class="eyebrow">Deux savoir-faire, un seul objectif</span>
+      <h1>L'alliance de deux traditions millénaires</h1>
+      <p class="lede">Le Kobido japonais et l'acupuncture esthétique chinoise, réunis dans un seul protocole.</p>
+    </div>
+  </section>
+
+  <section class="duo">
+    <div class="container">
+      <div class="duo-grid">
+        <div class="duo-card">
+          <span class="num">Technique japonaise</span>
+          <h3>Le Massage Kobido</h3>
+          <p>
+            Né il y a plus de 500 ans pour préserver l'éclat d'une impératrice japonaise, le
+            Kobido enchaîne percussions, pressions des méridiens, lissages et pincements pour
+            rééquilibrer les fluides et l'énergie du visage - un véritable lifting naturel.
+          </p>
+        </div>
+        <div class="duo-card">
+          <span class="num">Technique chinoise</span>
+          <h3>L'Acupuncture Esthétique</h3>
+          <p>
+            De fines aiguilles insérées sur les points d'acupression provoquent une légère
+            réaction de cicatrisation qui stimule la production naturelle de collagène et
+            d'élastine, pour une peau plus ferme et plus tonique.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="container">
+      <h2>Prête à essayer ce protocole ?</h2>
+      <p>Réservez votre séance de Massage Kobido &amp; Acupuncture Esthétique dès maintenant.</p>
+      <button type="button" class="btn btn-light js-book-btn">Choisir mon créneau</button>
+    </div>
+  </section>
+</main>
+
+<!-- Calendrier de réservation en pop-up -->
+<div class="calendar-modal" id="calendarModal" hidden>
+  <div class="booking-calendar calendar-modal-card">
+    <button type="button" class="booking-modal-close" id="calendarModalClose" aria-label="Fermer">&times;</button>
+    <h4>1. Choisissez une date</h4>
+    <div class="day-strip" id="dayStrip"></div>
+    <h4 style="margin-top:28px;">2. Choisissez un horaire</h4>
+    <div class="slot-grid" id="slotGrid"></div>
+  </div>
+</div>
+
+<!-- Bouton d'appel flottant -->
+<a href="tel:+41782654925" class="call-fab" id="callFab" aria-label="Appeler Éclat du Temps">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  <span class="call-fab-text">Appeler</span>
+</a>
+
+<!-- Formulaire de réservation en pop-up, une fois le créneau choisi -->
+<div class="booking-modal" id="bookingModal" hidden>
+  <div class="booking-form" id="bookingPanel">
+    <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Fermer">&times;</button>
+    <p class="booking-recap" id="bookingRecap">Sélectionnez une date et un horaire pour réserver votre soin.</p>
+    <form id="bookingForm">
+      <div class="form-fields">
+        <input type="hidden" name="_subject" value="Nouvelle demande de rendez-vous - Éclat du Temps">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" id="fieldReplyTo" name="_replyto" value="">
+        <input type="hidden" id="fieldDate" name="Date souhaitée" value="">
+        <input type="hidden" id="fieldTime" name="Heure souhaitée" value="">
+        <input type="hidden" name="Soin" value="Massage Kobido &amp; Acupuncture Esthétique (130 CHF)">
+        <div class="field">
+          <label for="bkName">Nom complet</label>
+          <input type="text" id="bkName" name="Nom" required>
+        </div>
+        <div class="field">
+          <label for="bkEmail">Email</label>
+          <input type="email" id="bkEmail" name="Email" required>
+        </div>
+        <div class="field">
+          <label for="bkPhone">Téléphone</label>
+          <input type="tel" id="bkPhone" name="Téléphone" required>
+        </div>
+        <div class="field">
+          <label for="bkMsg">Message (facultatif)</label>
+          <textarea id="bkMsg" name="Message" rows="3"></textarea>
+        </div>
+        <div class="field field-consent">
+          <label class="consent-checkbox">
+            <input type="checkbox" id="bkConsent" required>
+            <span>J'accepte que mes données (nom, email, téléphone) soient utilisées pour traiter ma demande de rendez-vous, conformément à la <a href="#" id="bkConsentLink">politique de confidentialité</a>.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
+      </div>
+    </form>
+    <p class="form-status" id="formStatus"></p>
+    <p class="form-note">
+      Votre demande est transmise directement par email à l'institut. Une fois envoyée,
+      ce créneau est réservé et n'apparaît plus disponible. Delphine confirme chaque
+      rendez-vous par retour d'email ou de téléphone.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Soin du visage" class="footer-logo-img" onerror="this.remove(); document.getElementById('footerLogoText').style.display='block';">
+        <div class="footer-logo" id="footerLogoText" style="display:none;">Éclat du Temps</div>
+        <p>
+          Institut de beauté à Genève, spécialisé en massage Kobido et acupuncture esthétique.
+          Révélons ensemble la lumière qui est déjà en vous.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Genève, Suisse</li>
+          <li><a href="tel:+41782654925">+41 78 265 49 25</a></li>
+          <li><a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Institut</h4>
+        <ul>
+          <li><a href="bienfaits.html">Bienfaits</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
+          <li><a href="techniques.html">Techniques</a></li>
+          <li><a href="deroulement.html">Déroulé du soin</a></li>
+          <li><a href="soin.html">Le soin signature</a></li>
+          <li><a href="#" class="js-book-btn">Réserver en ligne</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container" style="padding-left:0;padding-right:0;">
+      <span>© <span id="year"></span> Éclat du Temps - Delphine. Tous droits réservés.</span>
+      <span><a href="index.html">Mentions légales</a> · <a href="#" id="footerConsentLink">Confidentialité &amp; cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Bandeau de consentement RGPD -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <div class="consent-banner-inner">
+    <p class="consent-text">
+      Nous utilisons des cookies et services essentiels au fonctionnement du site (calendrier de
+      réservation), ainsi que des polices Google et, si vous l'acceptez, des outils de mesure
+      d'audience. <a href="#" id="consentDetailsLink">Personnaliser mes choix</a>
+    </p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentRefuse">Refuser</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="consentCustomize">Personnaliser</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAccept">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Panneau de préférences de confidentialité -->
+<div id="consentModal" class="consent-modal" hidden>
+  <div class="consent-modal-card">
+    <h3>Préférences de confidentialité</h3>
+    <p>
+      Éclat du Temps respecte votre vie privée. Choisissez ci-dessous les catégories que vous
+      acceptez. Vous pouvez modifier ces choix à tout moment via le lien « Confidentialité &amp;
+      cookies » en bas de page.
+    </p>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Nécessaire</strong>
+        <span class="consent-locked">Toujours actif</span>
+      </div>
+      <p>Fonctionnement du site et du calendrier de réservation (mémorisation des créneaux pris). Ne peut pas être désactivé.</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Fonctionnel</strong>
+        <label class="switch"><input type="checkbox" id="consentFunctional"><span class="slider"></span></label>
+      </div>
+      <p>Chargement des polices Google Fonts pour l'affichage typographique du site (transfert d'adresse IP vers Google).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Mesure d'audience</strong>
+        <label class="switch"><input type="checkbox" id="consentAnalytics"><span class="slider"></span></label>
+      </div>
+      <p>Non utilisé actuellement sur ce site. Réservé pour de futurs outils de statistiques (ex. Google Analytics).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Marketing</strong>
+        <label class="switch"><input type="checkbox" id="consentMarketing"><span class="slider"></span></label>
+      </div>
+      <p>Non utilisé actuellement sur ce site. Réservé pour de futures campagnes publicitaires.</p>
+    </div>
+
+    <p class="consent-legal">
+      Responsable du traitement : Delphine — Éclat du Temps, Genève. Les informations transmises
+      via le formulaire de réservation (nom, email, téléphone) servent uniquement à confirmer
+      votre rendez-vous et ne sont jamais revendues à des tiers. Vous pouvez demander l'accès, la
+      rectification ou la suppression de vos données à tout moment à
+      <a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a>.
+    </p>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentSave">Enregistrer mes choix</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAcceptAll">Tout accepter</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
