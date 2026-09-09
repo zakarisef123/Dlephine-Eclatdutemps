@@ -1,3 +1,37 @@
+var LANG = (document.documentElement.lang || 'fr').slice(0, 2) === 'en' ? 'en' : 'fr';
+var I18N = {
+  fr: {
+    weekdays: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
+    months: ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'],
+    chooseDateFirst: "Choisissez d'abord une date ci-dessus.",
+    noSlotThisDay: 'Aucun créneau disponible ce jour-là.',
+    bookedSuffix: ' · pris',
+    recapPrefix: 'Massage Kobido & Acupuncture Esthétique - ',
+    recapAt: ' à ',
+    recapDefault: 'Sélectionnez une date et un horaire pour réserver votre soin.',
+    validationError: "Merci de choisir une date et un horaire avant d'envoyer.",
+    sending: 'Envoi en cours…',
+    submitDefault: 'Envoyer ma demande',
+    successMsg: "Votre demande de rendez-vous a bien été envoyée. Delphine vous confirme votre créneau par retour d'email ou de téléphone.",
+    errorMsg: "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email."
+  },
+  en: {
+    weekdays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    chooseDateFirst: 'Please choose a date above first.',
+    noSlotThisDay: 'No time slots available on this day.',
+    bookedSuffix: ' · booked',
+    recapPrefix: 'Kobido Massage & Cosmetic Acupuncture - ',
+    recapAt: ' at ',
+    recapDefault: 'Select a date and time to book your treatment.',
+    validationError: 'Please choose a date and time before sending.',
+    sending: 'Sending…',
+    submitDefault: 'Send my request',
+    successMsg: "Your appointment request has been sent. Delphine will confirm your slot by email or phone.",
+    errorMsg: 'Something went wrong while sending. You can also reach us directly at +41 78 265 49 25 or by email.'
+  }
+}[LANG];
+
 document.getElementById('year').textContent = new Date().getFullYear();
 
 var toggle = document.getElementById('navToggle');
@@ -147,8 +181,8 @@ links.querySelectorAll('a').forEach(function(a){
   };
 
   var STORAGE_KEY = 'edt_bookings_v1';
-  var WEEKDAYS = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-  var MONTHS = ['Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];
+  var WEEKDAYS = I18N.weekdays;
+  var MONTHS = I18N.months;
 
   var dayStrip = document.getElementById('dayStrip');
   var slotGrid = document.getElementById('slotGrid');
@@ -258,14 +292,14 @@ links.querySelectorAll('a').forEach(function(a){
   function renderSlots(){
     slotGrid.innerHTML = '';
     if (!selectedDay){
-      slotGrid.innerHTML = '<p class="placeholder-empty">Choisissez d\'abord une date ci-dessus.</p>';
+      slotGrid.innerHTML = '<p class="placeholder-empty">' + I18N.chooseDateFirst + '</p>';
       return;
     }
     var key = dateKey(selectedDay);
     var booked = bookedFor(key);
     var slots = slotsFor(selectedDay);
     if (slots.length === 0){
-      slotGrid.innerHTML = '<p class="placeholder-empty">Aucun créneau disponible ce jour-là.</p>';
+      slotGrid.innerHTML = '<p class="placeholder-empty">' + I18N.noSlotThisDay + '</p>';
       return;
     }
     slots.forEach(function(time){
@@ -274,7 +308,7 @@ links.querySelectorAll('a').forEach(function(a){
       btn.type = 'button';
       btn.className = 'slot-btn' + (selectedTime === time && !isBooked ? ' selected' : '');
       btn.disabled = isBooked;
-      btn.textContent = isBooked ? time + ' · pris' : time;
+      btn.textContent = isBooked ? time + I18N.bookedSuffix : time;
       btn.addEventListener('click', function(){
         selectedTime = time;
         renderSlots();
@@ -288,7 +322,7 @@ links.querySelectorAll('a').forEach(function(a){
     if (!selectedDay || !selectedTime) return;
     var label = WEEKDAYS[selectedDay.getDay()] + ' ' + selectedDay.getDate() + ' ' +
                 MONTHS[selectedDay.getMonth()] + ' ' + selectedDay.getFullYear();
-    recap.textContent = 'Massage Kobido & Acupuncture Esthétique - ' + label + ' à ' + selectedTime;
+    recap.textContent = I18N.recapPrefix + label + I18N.recapAt + selectedTime;
     document.getElementById('fieldDate').value = label;
     document.getElementById('fieldTime').value = selectedTime;
     formStatus.className = 'form-status';
@@ -304,7 +338,7 @@ links.querySelectorAll('a').forEach(function(a){
     e.preventDefault();
     if (!selectedDay || !selectedTime){
       formStatus.className = 'form-status show err';
-      formStatus.textContent = 'Merci de choisir une date et un horaire avant d\'envoyer.';
+      formStatus.textContent = I18N.validationError;
       return;
     }
 
@@ -312,7 +346,7 @@ links.querySelectorAll('a').forEach(function(a){
 
     var submitBtn = bookingForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Envoi en cours…';
+    submitBtn.textContent = I18N.sending;
 
     var payload = new FormData(bookingForm);
     var bookedDay = selectedDay;
@@ -326,7 +360,7 @@ links.querySelectorAll('a').forEach(function(a){
       if (!res.ok) throw new Error('network');
       saveLocalBooking(dateKey(bookedDay), bookedTime);
       formStatus.className = 'form-status show ok';
-      formStatus.textContent = 'Votre demande de rendez-vous a bien été envoyée. Delphine vous confirme votre créneau par retour d\'email ou de téléphone.';
+      formStatus.textContent = I18N.successMsg;
       bookingForm.reset();
       selectedDay = null;
       selectedTime = null;
@@ -334,14 +368,14 @@ links.querySelectorAll('a').forEach(function(a){
       renderSlots();
       setTimeout(function(){
         closeBookingModal();
-        recap.textContent = 'Sélectionnez une date et un horaire pour réserver votre soin.';
+        recap.textContent = I18N.recapDefault;
       }, 2500);
     }).catch(function(){
       formStatus.className = 'form-status show err';
-      formStatus.textContent = "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email.";
+      formStatus.textContent = I18N.errorMsg;
     }).finally(function(){
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Envoyer ma demande';
+      submitBtn.textContent = I18N.submitDefault;
     });
   });
 })();
