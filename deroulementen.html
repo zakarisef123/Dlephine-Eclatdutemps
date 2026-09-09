@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Steps | Éclat du Temps - Geneva</title>
+<meta name="description" content="How a Kobido Massage and Cosmetic Acupuncture session unfolds: welcome, diagnosis, acupuncture, massage and advice.">
+<link rel="icon" type="image/png" href="LOGO DELPHINE.png">
+<link rel="apple-touch-icon" href="LOGO DELPHINE.png">
+<link rel="stylesheet" href="style.css">
+<script>
+  /* Google Consent Mode v2 - default state (everything denied except strictly
+     necessary) set before any third-party tag, as required by Google for EU/EEA visitors. */
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    personalization_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500
+  });
+</script>
+</head>
+<body>
+
+<header>
+  <div class="nav container">
+    <a href="index-en.html" class="logo">
+      <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Facial Treatment" class="logo-img" onerror="this.remove(); document.getElementById('logoText').style.display='inline';">
+      <span id="logoText" style="display:none;">Éclat <span>du Temps</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="bienfaits-en.html">Benefits</a>
+      <a href="philosophie-en.html">Philosophy</a>
+      <a href="techniques-en.html">Techniques</a>
+      <a href="soin-en.html">The Treatment</a>
+      <a href="#" class="js-book-btn">Book</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="deroulement.html" class="lang-switch">FR</a>
+      <a href="#" class="btn btn-primary js-book-btn" style="padding:12px 26px;">Book an Appointment</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero has-photo">
+    <img src="deroulement kobido.jpg" alt="Kobido session in progress" class="page-hero-bg-img" onerror="this.remove()">
+    <div class="page-hero-scrim"></div>
+    <div class="container">
+      <div class="breadcrumb"><a href="index-en.html">Home</a> / Session Steps</div>
+      <span class="eyebrow">The treatment steps</span>
+      <h1>How your session unfolds</h1>
+      <p class="lede">About 1 hour, from diagnosis to the final gesture, in the calm of the studio.</p>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="photo-tile process-photo">
+            <img src="images/etape-1.jpg" alt="Welcome and skin diagnosis" loading="lazy" onerror="this.remove()">
+          </div>
+          <span class="step-num">01</span>
+          <h3>Welcome &amp; diagnosis</h3>
+          <p>A conversation about your skin, your needs and your goals, to tailor the protocol.</p>
+        </div>
+        <div class="process-step">
+          <div class="photo-tile process-photo">
+            <img src="images/etape-2.jpg" alt="Placing cosmetic acupuncture needles" loading="lazy" onerror="this.remove()">
+          </div>
+          <span class="step-num">02</span>
+          <h3>Cosmetic acupuncture</h3>
+          <p>Insertion of fine needles at the meridians and acupressure points of the face.</p>
+        </div>
+        <div class="process-step">
+          <div class="photo-tile process-photo">
+            <img src="images/etape-3.jpg" alt="Kobido massage, needle removal" loading="lazy" onerror="this.remove()">
+          </div>
+          <span class="step-num">03</span>
+          <h3>Kobido massage</h3>
+          <p>Needle removal, then percussions, kneading and rhythmic draining of the face.</p>
+        </div>
+        <div class="process-step">
+          <div class="photo-tile process-photo">
+            <img src="images/etape-4.jpg" alt="End of treatment and personalized advice" loading="lazy" onerror="this.remove()">
+          </div>
+          <span class="step-num">04</span>
+          <h3>End of session &amp; advice</h3>
+          <p>A moment of rest, followed by personalized advice to extend the benefits at home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta">
+    <div class="container">
+      <h2>Ready to experience it?</h2>
+      <p>Book your Kobido Massage &amp; Cosmetic Acupuncture session now.</p>
+      <button type="button" class="btn btn-light js-book-btn">Choose my time slot</button>
+    </div>
+  </section>
+</main>
+
+<!-- Booking calendar pop-up -->
+<div class="calendar-modal" id="calendarModal" hidden>
+  <div class="booking-calendar calendar-modal-card">
+    <button type="button" class="booking-modal-close" id="calendarModalClose" aria-label="Close">&times;</button>
+    <h4>1. Choose a date</h4>
+    <div class="day-strip" id="dayStrip"></div>
+    <h4 style="margin-top:28px;">2. Choose a time</h4>
+    <div class="slot-grid" id="slotGrid"></div>
+  </div>
+</div>
+
+<!-- Floating call button -->
+<a href="tel:+41782654925" class="call-fab" id="callFab" aria-label="Call Éclat du Temps">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  <span class="call-fab-text">Call</span>
+</a>
+
+<!-- Booking form pop-up, shown once a time slot is chosen -->
+<div class="booking-modal" id="bookingModal" hidden>
+  <div class="booking-form" id="bookingPanel">
+    <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+    <p class="booking-recap" id="bookingRecap">Select a date and time to book your treatment.</p>
+    <form id="bookingForm">
+      <div class="form-fields">
+        <input type="hidden" name="_subject" value="New appointment request - Éclat du Temps (EN)">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" id="fieldReplyTo" name="_replyto" value="">
+        <input type="hidden" id="fieldDate" name="Preferred date" value="">
+        <input type="hidden" id="fieldTime" name="Preferred time" value="">
+        <input type="hidden" name="Treatment" value="Kobido Massage &amp; Cosmetic Acupuncture (130 CHF)">
+        <div class="field">
+          <label for="bkName">Full name</label>
+          <input type="text" id="bkName" name="Name" required>
+        </div>
+        <div class="field">
+          <label for="bkEmail">Email</label>
+          <input type="email" id="bkEmail" name="Email" required>
+        </div>
+        <div class="field">
+          <label for="bkPhone">Phone</label>
+          <input type="tel" id="bkPhone" name="Phone" required>
+        </div>
+        <div class="field">
+          <label for="bkMsg">Message (optional)</label>
+          <textarea id="bkMsg" name="Message" rows="3"></textarea>
+        </div>
+        <div class="field field-consent">
+          <label class="consent-checkbox">
+            <input type="checkbox" id="bkConsent" required>
+            <span>I agree that my data (name, email, phone) will be used to process my appointment request, in accordance with the <a href="#" id="bkConsentLink">privacy policy</a>.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send my request</button>
+      </div>
+    </form>
+    <p class="form-status" id="formStatus"></p>
+    <p class="form-note">
+      Your request is sent directly by email to the institute. Once submitted,
+      this time slot is booked and no longer available. Delphine will confirm
+      your appointment by email or phone.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Facial Treatment" class="footer-logo-img" onerror="this.remove(); document.getElementById('footerLogoText').style.display='block';">
+        <div class="footer-logo" id="footerLogoText" style="display:none;">Éclat du Temps</div>
+        <p>
+          Beauty institute in Geneva, specializing in Kobido massage and cosmetic
+          acupuncture. Let's reveal the light that is already within you, together.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Geneva, Switzerland</li>
+          <li><a href="tel:+41782654925">+41 78 265 49 25</a></li>
+          <li><a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Institute</h4>
+        <ul>
+          <li><a href="bienfaits-en.html">Benefits</a></li>
+          <li><a href="philosophie-en.html">Philosophy</a></li>
+          <li><a href="techniques-en.html">Techniques</a></li>
+          <li><a href="deroulement-en.html">Session steps</a></li>
+          <li><a href="soin-en.html">Signature treatment</a></li>
+          <li><a href="#" class="js-book-btn">Book online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container" style="padding-left:0;padding-right:0;">
+      <span>© <span id="year"></span> Éclat du Temps - Delphine. All rights reserved.</span>
+      <span><a href="index-en.html">Legal Notice</a> · <a href="#" id="footerConsentLink">Privacy &amp; Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- GDPR consent banner -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <div class="consent-banner-inner">
+    <p class="consent-text">
+      We use cookies and services essential to the site's operation (booking
+      calendar), as well as Google Fonts and, if you accept, audience
+      measurement tools. <a href="#" id="consentDetailsLink">Customize my choices</a>
+    </p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentRefuse">Refuse</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="consentCustomize">Customize</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAccept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy preferences panel -->
+<div id="consentModal" class="consent-modal" hidden>
+  <div class="consent-modal-card">
+    <h3>Privacy preferences</h3>
+    <p>
+      Éclat du Temps respects your privacy. Choose below which categories you
+      accept. You can change these choices at any time via the "Privacy &amp;
+      Cookies" link at the bottom of the page.
+    </p>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Necessary</strong>
+        <span class="consent-locked">Always active</span>
+      </div>
+      <p>Operation of the site and booking calendar (remembering booked slots). Cannot be disabled.</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Functional</strong>
+        <label class="switch"><input type="checkbox" id="consentFunctional"><span class="slider"></span></label>
+      </div>
+      <p>Loading Google Fonts for the site's typography (IP address transfer to Google).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Audience measurement</strong>
+        <label class="switch"><input type="checkbox" id="consentAnalytics"><span class="slider"></span></label>
+      </div>
+      <p>Not currently used on this site. Reserved for future analytics tools (e.g. Google Analytics).</p>
+    </div>
+
+    <div class="consent-category">
+      <div class="consent-category-head">
+        <strong>Marketing</strong>
+        <label class="switch"><input type="checkbox" id="consentMarketing"><span class="slider"></span></label>
+      </div>
+      <p>Not currently used on this site. Reserved for future advertising campaigns.</p>
+    </div>
+
+    <p class="consent-legal">
+      Data controller: Delphine — Éclat du Temps, Geneva. Information submitted
+      via the booking form (name, email, phone) is used only to confirm your
+      appointment and is never resold to third parties. You may request access,
+      correction, or deletion of your data at any time at
+      <a href="mailto:Eclatdutemps@hotmail.com">Eclatdutemps@hotmail.com</a>.
+    </p>
+
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="consentSave">Save my choices</button>
+      <button type="button" class="btn btn-primary btn-sm" id="consentAcceptAll">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
