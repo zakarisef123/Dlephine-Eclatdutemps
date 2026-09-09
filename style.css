@@ -443,6 +443,13 @@
     position:relative;
     background:linear-gradient(155deg, var(--wine), var(--wine-deep));
     min-height:320px;
+    display:flex;
+    flex-direction:column;
+  }
+  .service-media-photos{
+    position:relative;
+    flex:1;
+    min-height:260px;
   }
   .soin-mosaic{
     grid-template-columns:repeat(3,1fr);
@@ -451,9 +458,7 @@
   .service-media-scrim{
     position:absolute;inset:0;
     pointer-events:none;
-    background:
-      radial-gradient(circle at 70% 30%, rgba(165,138,99,.25), transparent 55%),
-      linear-gradient(0deg, rgba(20,14,8,.75) 0%, rgba(20,14,8,.15) 42%, transparent 62%);
+    background:radial-gradient(circle at 70% 30%, rgba(165,138,99,.25), transparent 55%);
   }
   .service-media .tag{
     position:absolute;
@@ -467,14 +472,15 @@
     padding:8px 16px;
     border-radius:999px;
   }
-  .service-media .quote{
-    position:absolute;
-    bottom:30px;left:30px;right:30px;
+  .service-media-quote{
+    padding:24px 30px;
+    background:var(--wine-deep);
     color:#fff;
     font-family:var(--serif);
     font-style:italic;
-    font-size:1.15rem;
+    font-size:1.05rem;
     line-height:1.5;
+    text-align:center;
   }
 
   /* ---------- Booking / calendar ---------- */
