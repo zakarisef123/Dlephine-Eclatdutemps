@@ -163,13 +163,13 @@ links.querySelectorAll('a').forEach(function(a){
 
   // Horaires d'ouverture : 0=dimanche … 6=samedi. null = fermé.
   var BUSINESS_HOURS = {
-    0: null,
-    1: [9, 18],
-    2: [9, 18],
-    3: [9, 18],
-    4: [9, 18],
-    5: [9, 18],
-    6: null
+    0: [9, 18],
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: [9, 18]
   };
   var DAYS_AHEAD = 21; // nombre de jours ouverts affichés dans le calendrier
 
