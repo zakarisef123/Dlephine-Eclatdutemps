@@ -392,6 +392,7 @@ links.querySelectorAll('a').forEach(function(a){
       '&body=' + encodeURIComponent('Tél : ' + document.getElementById('bkPhone').value +
                                     ' - Email : ' + document.getElementById('bkEmail').value);
     payload.append('Ajouter à mon agenda Outlook', outlookLink);
+    payload.append('Version', '2');
 
     fetch(FORM_ENDPOINT, {
       method: 'POST',
