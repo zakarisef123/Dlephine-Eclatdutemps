@@ -1,0 +1,35 @@
+name: Synchroniser le calendrier Outlook
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # toutes les 30 minutes
+  workflow_dispatch:          # lancement manuel possible depuis l'onglet Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-calendar
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install icalendar recurring-ical-events
+      - run: python .github/scripts/sync_calendar.py
+        env:
+          OUTLOOK_ICS_URL: https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/e3d75113-b7db-413e-a1bb-67d04b5681e1/cid-24DF7655BE77F055/calendar.ics
+      - name: Enregistrer busy.json
+        run: |
+          if [ -n "$(git status --porcelain busy.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+            git add busy.json
+            git commit -m "Calendrier : mise à jour des créneaux occupés"
+            git push
+          fi
