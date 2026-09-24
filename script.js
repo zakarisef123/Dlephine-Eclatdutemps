@@ -379,6 +379,20 @@ links.querySelectorAll('a').forEach(function(a){
     var bookedDay = selectedDay;
     var bookedTime = selectedTime;
 
+    // Lien à cliquer dans l'email reçu : ouvre le rendez-vous pré-rempli dans Outlook,
+    // il ne reste qu'à l'enregistrer pour que le créneau se bloque sur le site.
+    var start = new Date(bookedDay.getTime());
+    start.setHours(parseInt(bookedTime, 10), 0, 0, 0);
+    var end = new Date(start.getTime() + SESSION_MINUTES * 60000);
+    var clientName = document.getElementById('bkName').value;
+    var outlookLink = 'https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent' +
+      '&subject=' + encodeURIComponent('RDV ' + clientName) +
+      '&startdt=' + encodeURIComponent(start.toISOString()) +
+      '&enddt=' + encodeURIComponent(end.toISOString()) +
+      '&body=' + encodeURIComponent('Tél : ' + document.getElementById('bkPhone').value +
+                                    ' - Email : ' + document.getElementById('bkEmail').value);
+    payload.append('Ajouter à mon agenda Outlook', outlookLink);
+
     fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
