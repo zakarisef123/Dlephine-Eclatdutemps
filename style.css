@@ -301,9 +301,23 @@
     background:linear-gradient(150deg, var(--blush), #fff 70%);
     border:1px solid var(--line);
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
+    gap:22px;
     padding:40px;
+  }
+  .philosophy-visual .mono-caption{
+    font-size:.9rem;
+    color:var(--ink-soft);
+    text-align:center;
+    line-height:1.6;
+    max-width:260px;
+  }
+  .philosophy-visual .mono-caption em{
+    font-family:var(--serif);
+    font-size:1.15rem;
+    color:var(--gold);
   }
   .philosophy-visual .mono{
     font-family:var(--serif);
