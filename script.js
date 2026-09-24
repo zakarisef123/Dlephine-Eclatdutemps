@@ -180,6 +180,12 @@ links.querySelectorAll('a').forEach(function(a){
     // "2026-01-15": ["10:00", "14:00"]
   };
 
+  // Plages occupées de l'agenda Outlook de Delphine, copiées automatiquement toutes les
+  // 30 minutes dans busy.json par .github/workflows/sync-calendar.yml.
+  var BUSY_URL = 'busy.json';
+  var SESSION_MINUTES = 60; // durée d'une séance : un créneau est pris s'il chevauche un rendez-vous
+  var outlookBusy = {};
+
   var STORAGE_KEY = 'edt_bookings_v1';
   var WEEKDAYS = I18N.weekdays;
   var MONTHS = I18N.months;
@@ -231,10 +237,22 @@ links.querySelectorAll('a').forEach(function(a){
     if (all[key].indexOf(time) === -1) all[key].push(time);
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(all)); } catch(e){}
   }
+  function toMinutes(hhmm){
+    var p = hhmm.split(':');
+    return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  }
+  function busyInOutlook(key, time){
+    var start = toMinutes(time);
+    var end = start + SESSION_MINUTES;
+    return (outlookBusy[key] || []).some(function(r){
+      return toMinutes(r[0]) < end && toMinutes(r[1]) > start;
+    });
+  }
   function bookedFor(key){
     var manual = MANUAL_BOOKED[key] || [];
     var local = loadLocalBookings()[key] || [];
-    return manual.concat(local);
+    var outlook = slotsFor(new Date(key + 'T00:00:00')).filter(function(t){ return busyInOutlook(key, t); });
+    return manual.concat(local, outlook);
   }
 
   function slotsFor(dateObj){
@@ -333,6 +351,15 @@ links.querySelectorAll('a').forEach(function(a){
 
   renderDays();
   renderSlots();
+
+  fetch(BUSY_URL + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(res){ return res.ok ? res.json() : {}; })
+    .then(function(data){
+      outlookBusy = (data && data.busy) || {};
+      renderDays();
+      renderSlots();
+    })
+    .catch(function(){});
 
   bookingForm.addEventListener('submit', function(e){
     e.preventDefault();
