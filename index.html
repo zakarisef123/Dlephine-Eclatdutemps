@@ -6,6 +6,10 @@
 <title>Éclat du Temps | Delphine - Kobido &amp; Acupuncture Esthétique, Genève</title>
 <meta name="description" content="Massage Kobido et acupuncture esthétique à Genève. Un soin naturel, sur-mesure, pour révéler l'éclat de votre visage et vous reconnecter à vous-même.">
 <link rel="canonical" href="https://eclatdutemps.com/index.html">
+<link rel="alternate" hreflang="fr-CH" href="https://eclatdutemps.com/index.html">
+<link rel="alternate" hreflang="fr" href="https://eclatdutemps.com/index.html">
+<link rel="alternate" hreflang="en" href="https://eclatdutemps.com/indexen.html">
+<link rel="alternate" hreflang="x-default" href="https://eclatdutemps.com/index.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Éclat du Temps">
 <meta property="og:locale" content="fr_FR">
@@ -19,7 +23,7 @@
 <meta name="twitter:image" content="https://eclatdutemps.com/image%20fond%20principal.png">
 <link rel="icon" type="image/png" href="LOGO DELPHINE.png">
 <link rel="apple-touch-icon" href="LOGO DELPHINE.png">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <script>
   /* Google Consent Mode v2 - état par défaut (tout refusé sauf le strict nécessaire)
      défini avant tout tag tiers, comme l'exige Google pour les visiteurs UE/EEE. */
@@ -54,7 +58,16 @@
     "addressLocality": "Genève",
     "addressCountry": "CH"
   },
-  "areaServed": "Genève",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Genève"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Canton de Genève"
+    }
+  ],
   "description": "Institut de beauté à Genève, spécialisé en massage Kobido et acupuncture esthétique. Un soin naturel et sur-mesure pour révéler l'éclat du visage, sans chirurgie ni injection.",
   "makesOffer": {
     "@type": "Offer",
@@ -62,7 +75,89 @@
     "price": "139",
     "priceCurrency": "CHF"
   },
-  "inLanguage": ["fr", "en"]
+  "inLanguage": [
+    "fr",
+    "en"
+  ],
+  "@id": "https://eclatdutemps.com/#institut",
+  "founder": {
+    "@type": "Person",
+    "name": "Delphine"
+  },
+  "knowsAbout": [
+    "Massage Kobido",
+    "Massage facial japonais",
+    "Acupuncture esthétique",
+    "Acupuncture du visage",
+    "Lifting naturel du visage",
+    "Soin anti-âge naturel",
+    "Alternative naturelle au botox"
+  ],
+  "knowsLanguage": [
+    "fr",
+    "en"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "https://schema.org/Saturday",
+        "https://schema.org/Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": "https://eclatdutemps.com/reservation.html"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Soins du visage naturels à Genève",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "price": "139",
+        "priceCurrency": "CHF",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Massage Kobido",
+          "url": "https://eclatdutemps.com/massage-kobido-geneve.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "price": "139",
+        "priceCurrency": "CHF",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Acupuncture esthétique",
+          "url": "https://eclatdutemps.com/acupuncture-esthetique-geneve.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "price": "139",
+        "priceCurrency": "CHF",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lifting naturel du visage",
+          "url": "https://eclatdutemps.com/lifting-naturel-geneve.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "price": "139",
+        "priceCurrency": "CHF",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Soin signature Massage Kobido & Acupuncture Esthétique",
+          "url": "https://eclatdutemps.com/soin.html"
+        }
+      }
+    ]
+  }
 }
 </script>
 </head>
@@ -74,18 +169,33 @@
       <img src="LOGO DELPHINE.png" alt="Éclat du Temps - Soin du visage" class="logo-img" onerror="this.remove(); document.getElementById('logoText').style.display='inline';">
       <span id="logoText" style="display:none;">Éclat <span>du Temps</span></span>
     </a>
-    <nav class="nav-links" id="navLinks">
-      <a href="bienfaits.html">Bienfaits</a>
-      <a href="philosophie.html">Philosophie</a>
-      <a href="techniques.html">Techniques</a>
-      <a href="soin.html">Le Soin</a>
+    <nav class="nav-links" id="navLinks" aria-label="Menu principal">
+      <div class="nav-item has-sub">
+        <a href="soin.html" class="nav-parent">Nos soins <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
+        <div class="nav-sub">
+          <a href="massage-kobido-geneve.html">Massage Kobido</a>
+          <a href="acupuncture-esthetique-geneve.html">Acupuncture esthétique</a>
+          <a href="lifting-naturel-geneve.html">Lifting naturel &amp; anti-âge</a>
+          <a href="soin.html">Soin signature Kobido &amp; Acupuncture</a>
+          <a href="deroulement.html">Déroulé d'une séance</a>
+        </div>
+      </div>
+      <div class="nav-item has-sub">
+        <a href="bienfaits.html" class="nav-parent">L'institut <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
+        <div class="nav-sub">
+          <a href="bienfaits.html">Bienfaits</a>
+          <a href="techniques.html">Techniques</a>
+          <a href="philosophie.html">Philosophie</a>
+        </div>
+      </div>
       <a href="blog.html">Blog</a>
-      <a href="#" class="js-book-btn">Réserver</a>
-      <a href="#contact">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <a href="reservation.html">Réserver</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-cta">
-      <a href="indexen.html" class="lang-switch">EN</a>
-      <a href="#" class="btn btn-primary js-book-btn" style="padding:12px 26px;">Prendre rendez-vous</a>
+      <a href="indexen.html" class="lang-switch" hreflang="en">EN</a>
+      <a href="reservation.html" class="btn btn-primary js-book-btn" style="padding:12px 26px;">Prendre rendez-vous</a>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
@@ -109,7 +219,7 @@
         </p>
         <div class="hero-actions">
           <a href="#" class="btn btn-primary js-book-btn">Réserver mon soin</a>
-          <a href="techniques.html" class="btn btn-light">Découvrir le Kobido</a>
+          <a href="massage-kobido-geneve.html" class="btn btn-light">Découvrir le Kobido</a>
         </div>
       </div>
     </div>
@@ -323,13 +433,18 @@
       <div class="footer-col">
         <h4>Institut</h4>
         <ul>
-          <li><a href="bienfaits.html">Bienfaits</a></li>
-          <li><a href="philosophie.html">Philosophie</a></li>
-          <li><a href="techniques.html">Techniques</a></li>
-          <li><a href="deroulement.html">Déroulé du soin</a></li>
+          <li><a href="massage-kobido-geneve.html">Massage Kobido Genève</a></li>
+          <li><a href="acupuncture-esthetique-geneve.html">Acupuncture esthétique Genève</a></li>
+          <li><a href="lifting-naturel-geneve.html">Lifting naturel Genève</a></li>
           <li><a href="soin.html">Le soin signature</a></li>
+          <li><a href="deroulement.html">Déroulé du soin</a></li>
+          <li><a href="bienfaits.html">Bienfaits</a></li>
+          <li><a href="techniques.html">Techniques</a></li>
+          <li><a href="philosophie.html">Philosophie</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="#" class="js-book-btn">Réserver en ligne</a></li>
+          <li><a href="faq.html">Questions fréquentes</a></li>
+          <li><a href="reservation.html">Réserver en ligne</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
