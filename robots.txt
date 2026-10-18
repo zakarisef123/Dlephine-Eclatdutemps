@@ -100,5 +100,20 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: Google-CloudVertexBot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Ai2Bot
+Allow: /
+
 # --- Plan du site ----------------------------------------------------------
 Sitemap: https://eclatdutemps.com/sitemap.xml

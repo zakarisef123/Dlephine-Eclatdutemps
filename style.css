@@ -1016,7 +1016,8 @@
   .section-preview .eyebrow{margin-bottom:10px;}
   .section-preview h2{font-size:1.6rem;margin-bottom:12px;}
   .section-preview p{color:var(--ink-soft);font-size:.98rem;margin:0 0 18px;}
-  .section-preview .preview-link{
+  .section-preview .preview-link,
+  .home-service-card .preview-link{
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -1028,8 +1029,10 @@
     color:var(--wine);
     white-space:nowrap;
   }
-  .section-preview .preview-link svg{width:16px;height:16px;transition:transform .2s ease;}
-  .section-preview:hover .preview-link svg{transform:translateX(4px);}
+  .section-preview .preview-link svg,
+  .home-service-card .preview-link svg{width:16px;height:16px;transition:transform .2s ease;}
+  .section-preview:hover .preview-link svg,
+  .home-service-card:hover .preview-link svg{transform:translateX(4px);}
   @media (max-width:900px){
     .previews-list .section-preview{margin-left:0 !important;margin-right:0 !important;}
   }
@@ -1162,4 +1165,22 @@
   .blog-article .contact-card p{margin:8px 0 0;font-size:1rem;overflow-wrap:anywhere;}
   @media (max-width:700px){
     .contact-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Encadré « L'essentiel » (pages soins) ---------- */
+  .key-facts{border-left:3px solid var(--gold);background:#fff;padding:22px 26px 6px;margin:28px 0 34px;}
+  .blog-article .key-facts-title{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 10px;}
+  .blog-article .key-facts ul{margin:0 0 16px;}
+  .blog-article .key-facts li{font-size:.98rem;}
+
+  /* ---------- Accueil : nos soins à Genève ---------- */
+  .home-services{padding:90px 0 40px;}
+  .home-services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .home-service-card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);background:#fff;padding:30px 26px;transition:border-color .2s ease, transform .2s ease;}
+  .home-service-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+  .home-service-card h3{font-family:var(--serif);font-size:1.3rem;color:var(--wine-deep);margin:0;}
+  .home-service-card p{color:var(--ink-soft);margin:0;line-height:1.7;}
+  .home-service-card .preview-link{margin-top:auto;padding-top:8px;}
+  @media (max-width:900px){
+    .home-services-grid{grid-template-columns:1fr;}
   }
