@@ -126,6 +126,30 @@
     transition:width .3s ease;
   }
   .nav-links a:hover:after{width:100%;}
+  .nav-links a[aria-current="page"]:after,
+  .nav-item.is-active > .nav-parent:after{width:100%;}
+  /* Menus déroulants (Nos soins, L'institut) */
+  .nav-item{position:relative;}
+  .nav-caret{font-size:.62rem;margin-left:3px;color:var(--gold);}
+  .nav-sub{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:-20px;
+    min-width:270px;
+    flex-direction:column;
+    gap:14px;
+    padding:20px;
+    margin-top:10px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    box-shadow:0 14px 30px rgba(54,42,34,.10);
+    z-index:120;
+  }
+  .nav-sub:before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px;}
+  .nav-sub a{text-transform:none;letter-spacing:.02em;font-size:.9rem;}
+  .nav-item:hover .nav-sub,
+  .nav-item:focus-within .nav-sub{display:flex;}
   .nav-cta{display:flex;align-items:center;gap:20px;}
   .lang-switch{
     font-family:var(--sans);
@@ -823,6 +847,9 @@
   @media (max-width: 1220px){
     .nav-links{display:none;}
     .nav-toggle{display:flex;}
+    .nav-links{max-height:calc(100vh - 110px);overflow-y:auto;}
+    .nav-sub{display:flex;position:static;min-width:0;margin:12px 0 0;padding:0 0 0 16px;border:none;border-left:1px solid var(--line);box-shadow:none;background:none;gap:12px;}
+    .nav-sub:before{display:none;}
   }
   @media (max-width: 900px){
     .hero{min-height:0;display:block;}
@@ -989,7 +1016,8 @@
   .section-preview .eyebrow{margin-bottom:10px;}
   .section-preview h2{font-size:1.6rem;margin-bottom:12px;}
   .section-preview p{color:var(--ink-soft);font-size:.98rem;margin:0 0 18px;}
-  .section-preview .preview-link{
+  .section-preview .preview-link,
+  .home-service-card .preview-link{
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -1001,8 +1029,10 @@
     color:var(--wine);
     white-space:nowrap;
   }
-  .section-preview .preview-link svg{width:16px;height:16px;transition:transform .2s ease;}
-  .section-preview:hover .preview-link svg{transform:translateX(4px);}
+  .section-preview .preview-link svg,
+  .home-service-card .preview-link svg{width:16px;height:16px;transition:transform .2s ease;}
+  .section-preview:hover .preview-link svg,
+  .home-service-card:hover .preview-link svg{transform:translateX(4px);}
   @media (max-width:900px){
     .previews-list .section-preview{margin-left:0 !important;margin-right:0 !important;}
   }
@@ -1109,4 +1139,48 @@
   @media (max-width:520px){
     .blog-article .article-photo img{height:220px;}
     .blog-cta-inline{padding:26px 22px;}
+  }
+
+  /* ---------- FAQ (pages services & FAQ) ---------- */
+  .faq-list{display:flex;flex-direction:column;gap:12px;margin:10px 0 30px;}
+  .faq-item{border:1px solid var(--line);background:#fff;padding:0 22px;}
+  .faq-item summary{
+    cursor:pointer;
+    list-style:none;
+    padding:18px 30px 18px 0;
+    position:relative;
+    font-family:var(--serif);
+    font-size:1.08rem;
+    color:var(--wine-deep);
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary:after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);color:var(--gold);font-size:1.3rem;}
+  .faq-item[open] summary:after{content:"\2212";}
+  .blog-article .faq-item p{margin:0 0 18px;font-size:1rem;}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0 0 20px;}
+  .contact-card{border:1px solid var(--line);background:#fff;padding:24px 22px;}
+  .contact-card .idx{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .blog-article .contact-card p{margin:8px 0 0;font-size:1rem;overflow-wrap:anywhere;}
+  @media (max-width:700px){
+    .contact-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Encadré « L'essentiel » (pages soins) ---------- */
+  .key-facts{border-left:3px solid var(--gold);background:#fff;padding:22px 26px 6px;margin:28px 0 34px;}
+  .blog-article .key-facts-title{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 10px;}
+  .blog-article .key-facts ul{margin:0 0 16px;}
+  .blog-article .key-facts li{font-size:.98rem;}
+
+  /* ---------- Accueil : nos soins à Genève ---------- */
+  .home-services{padding:90px 0 40px;}
+  .home-services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .home-service-card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);background:#fff;padding:30px 26px;transition:border-color .2s ease, transform .2s ease;}
+  .home-service-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+  .home-service-card h3{font-family:var(--serif);font-size:1.3rem;color:var(--wine-deep);margin:0;}
+  .home-service-card p{color:var(--ink-soft);margin:0;line-height:1.7;}
+  .home-service-card .preview-link{margin-top:auto;padding-top:8px;}
+  @media (max-width:900px){
+    .home-services-grid{grid-template-columns:1fr;}
   }

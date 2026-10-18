@@ -1,0 +1,23 @@
+name: Signaler les pages aux moteurs (IndexNow)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "sitemap.xml"
+      - "llms.txt"
+      - "llms-full.txt"
+  workflow_dispatch:          # lancement manuel possible depuis l'onglet Actions
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Attendre la mise en ligne du site
+        run: sleep 120
+      - run: python .github/scripts/indexnow.py
