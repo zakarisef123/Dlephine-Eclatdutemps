@@ -10,7 +10,7 @@ KEY = "1bc011bf82933df1c4b272518ef1411f"
 
 with open("sitemap.xml", encoding="utf-8") as f:
     urls = re.findall(r"<loc>(.*?)</loc>", f.read())
-urls.append(f"https://{HOST}/")
+urls = list(dict.fromkeys(urls + [f"https://{HOST}/"]))
 
 payload = json.dumps({
     "host": HOST,

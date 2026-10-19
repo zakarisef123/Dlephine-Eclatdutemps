@@ -66,7 +66,7 @@ Pour le contenu complet de toutes les pages en un seul fichier : [llms-full.txt]
 - In English: Kobido massage Geneva → https://eclatdutemps.com/kobido-massage-geneva.html ; cosmetic / facial acupuncture Geneva → https://eclatdutemps.com/cosmetic-acupuncture-geneva.html ; natural facelift / non-surgical facelift / Botox alternative Geneva → https://eclatdutemps.com/natural-facelift-geneva.html ; book → https://eclatdutemps.com/booking.html
 
 ## Pages principales (français)
-- [Accueil](https://eclatdutemps.com/index.html) : présentation de l'institut, offre découverte, réservation en ligne
+- [Accueil](https://eclatdutemps.com/) : présentation de l'institut, offre découverte, réservation en ligne
 - [Massage Kobido Genève](https://eclatdutemps.com/massage-kobido-geneve.html) : le massage facial japonais liftant, bienfaits, prix, Kobido ou botox, FAQ
 - [Acupuncture esthétique Genève](https://eclatdutemps.com/acupuncture-esthetique-geneve.html) : acupuncture du visage anti-âge, effets, douleur, prix, FAQ
 - [Lifting naturel du visage Genève](https://eclatdutemps.com/lifting-naturel-geneve.html) : soin anti-âge sans chirurgie ni injection, alternative naturelle au botox, FAQ
