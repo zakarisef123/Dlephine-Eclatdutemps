@@ -3,12 +3,12 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://eclatdutemps.com/index.html</loc>
+    <loc>https://eclatdutemps.com/</loc>
     <lastmod>2026-10-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://eclatdutemps.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://eclatdutemps.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://eclatdutemps.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eclatdutemps.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eclatdutemps.com/indexen.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eclatdutemps.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eclatdutemps.com/"/>
     <image:image>
       <image:loc>https://eclatdutemps.com/images/massage-visage-kobido-geneve.jpg</image:loc>
     </image:image>
@@ -31,10 +31,10 @@
   <url>
     <loc>https://eclatdutemps.com/indexen.html</loc>
     <lastmod>2026-10-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://eclatdutemps.com/index.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://eclatdutemps.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://eclatdutemps.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://eclatdutemps.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://eclatdutemps.com/indexen.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://eclatdutemps.com/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eclatdutemps.com/"/>
     <image:image>
       <image:loc>https://eclatdutemps.com/images/massage-visage-kobido-geneve.jpg</image:loc>
     </image:image>
