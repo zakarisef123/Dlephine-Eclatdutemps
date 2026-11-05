@@ -1204,3 +1204,44 @@
     .philosophy-portrait{position:relative;top:0;max-width:460px;}
     .philosophy-portrait img{aspect-ratio:4/5;}
   }
+
+  /* ---------- Avis Google ---------- */
+  .google-reviews{
+    margin:40px auto 0;
+    padding:30px 26px;
+    max-width:620px;
+    background:#fff;
+    border:1px solid var(--line);
+    text-align:center;
+  }
+  .google-reviews-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:.76rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--gold);
+  }
+  .google-reviews .g-star{width:16px;height:16px;}
+  .google-reviews p,
+  .blog-article .google-reviews p{
+    margin:12px 0 22px;
+    font-size:.95rem;
+    line-height:1.7;
+    color:var(--ink-soft);
+  }
+  .google-reviews-actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+  }
+  .blog-article .google-reviews{margin:10px 0 40px;max-width:none;}
+  .blog-article .google-reviews a{text-decoration:none;}
+  .blog-article .google-reviews .btn-primary{color:#fff;}
+  @media (max-width:560px){
+    .google-reviews{padding:26px 18px;}
+    .google-reviews-actions .btn{width:100%;justify-content:center;white-space:normal;}
+  }
