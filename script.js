@@ -180,7 +180,12 @@ links.querySelectorAll('a').forEach(function(a){
   // "AAAA-MM-JJ": ["HH:MM", "HH:MM"]
   var MANUAL_BOOKED = {
     // "2026-01-15": ["10:00", "14:00"]
+    "2026-11-22": ["10:00"]
   };
+
+  // Jours de fermeture exceptionnelle (absence, congés) : aucun créneau proposé.
+  // À garder identique à CLOSED_DAYS dans netlify/functions/slots.mjs.
+  var CLOSED_DAYS = ["2026-11-21", "2026-11-22"];
 
   // Plages occupées de l'agenda Outlook de Delphine, copiées automatiquement toutes les
   // 30 minutes dans busy.json par .github/workflows/sync-calendar.yml.
@@ -266,7 +271,7 @@ links.querySelectorAll('a').forEach(function(a){
 
   function slotsFor(dateObj){
     var hours = BUSINESS_HOURS[dateObj.getDay()];
-    if (!hours) return [];
+    if (!hours || CLOSED_DAYS.indexOf(dateKey(dateObj)) !== -1) return [];
     var slots = [];
     var now = new Date();
     var isToday = dateKey(dateObj) === dateKey(now);

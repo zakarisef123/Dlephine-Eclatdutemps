@@ -17,6 +17,8 @@ import { getStore } from "@netlify/blobs";
 const TZ = "Europe/Zurich";
 // Doit correspondre à BUSINESS_HOURS dans script.js (0 = dimanche, 6 = samedi).
 const BUSINESS_HOURS = { 0: [9, 18], 6: [9, 18] };
+// Jours de fermeture exceptionnelle : à garder identique à CLOSED_DAYS dans script.js.
+const CLOSED_DAYS = ["2026-11-21", "2026-11-22"];
 const MAX_DAYS_AHEAD = 70;
 const RELEASE_WINDOW_MS = 15 * 60 * 1000;
 
@@ -44,6 +46,7 @@ function validSlot(date, time) {
   const hours = BUSINESS_HOURS[day.getUTCDay()];
   const h = Number(time.slice(0, 2));
   if (!hours || h < hours[0] || h >= hours[1]) return false;
+  if (CLOSED_DAYS.includes(date)) return false;
   const { today, hour } = nowInGeneva();
   if (date < today || (date === today && h <= hour)) return false;
   const daysAhead = (day - new Date(`${today}T00:00:00Z`)) / 86400000;
