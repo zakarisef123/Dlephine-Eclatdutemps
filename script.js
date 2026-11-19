@@ -185,7 +185,7 @@ links.querySelectorAll('a').forEach(function(a){
 
   // Jours de fermeture exceptionnelle (absence, congés) : aucun créneau proposé.
   // À garder identique à CLOSED_DAYS dans netlify/functions/slots.mjs.
-  var CLOSED_DAYS = ["2026-11-21", "2026-11-22"];
+  var CLOSED_DAYS = []; // ex. ["2026-12-26", "2026-12-27"]
 
   // Plages occupées de l'agenda Outlook de Delphine, copiées automatiquement toutes les
   // 30 minutes dans busy.json par .github/workflows/sync-calendar.yml.
