@@ -13,7 +13,8 @@ var I18N = {
     sending: 'Envoi en cours…',
     submitDefault: 'Envoyer ma demande',
     successMsg: "Votre demande de rendez-vous a bien été envoyée. Delphine vous confirme votre créneau par retour d'email ou de téléphone.",
-    errorMsg: "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email."
+    errorMsg: "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email.",
+    takenMsg: "Désolé, ce créneau vient d'être réservé par une autre personne. Merci d'en choisir un autre."
   },
   en: {
     weekdays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
@@ -28,7 +29,8 @@ var I18N = {
     sending: 'Sending…',
     submitDefault: 'Send my request',
     successMsg: "Your appointment request has been sent. Delphine will confirm your slot by email or phone.",
-    errorMsg: 'Something went wrong while sending. You can also reach us directly at +41 78 265 49 25 or by email.'
+    errorMsg: 'Something went wrong while sending. You can also reach us directly at +41 78 265 49 25 or by email.',
+    takenMsg: 'Sorry, this time slot has just been booked by someone else. Please choose another one.'
   }
 }[LANG];
 
@@ -178,13 +180,24 @@ links.querySelectorAll('a').forEach(function(a){
   // "AAAA-MM-JJ": ["HH:MM", "HH:MM"]
   var MANUAL_BOOKED = {
     // "2026-01-15": ["10:00", "14:00"]
+    "2026-11-22": ["10:00"]
   };
+
+  // Jours de fermeture exceptionnelle (absence, congés) : aucun créneau proposé.
+  // À garder identique à CLOSED_DAYS dans netlify/functions/slots.mjs.
+  var CLOSED_DAYS = ["2026-11-28", "2026-11-29"];
 
   // Plages occupées de l'agenda Outlook de Delphine, copiées automatiquement toutes les
   // 30 minutes dans busy.json par .github/workflows/sync-calendar.yml.
   var BUSY_URL = 'busy.json';
   var SESSION_MINUTES = 60; // durée d'une séance : un créneau est pris s'il chevauche un rendez-vous
   var outlookBusy = {};
+
+  // Créneaux réservés via le site par n'importe quel visiteur (fonction Netlify
+  // netlify/functions/slots.mjs) : dès qu'un client envoie sa demande, l'horaire
+  // disparaît du calendrier pour tout le monde.
+  var SLOTS_API = '/api/slots';
+  var serverBooked = {};
 
   var STORAGE_KEY = 'edt_bookings_v1';
   var WEEKDAYS = I18N.weekdays;
@@ -202,7 +215,7 @@ links.querySelectorAll('a').forEach(function(a){
 
   function openBookingModal(){ bookingModal.hidden = false; }
   function closeBookingModal(){ bookingModal.hidden = true; }
-  function openCalendarModal(){ calendarModal.hidden = false; }
+  function openCalendarModal(){ calendarModal.hidden = false; refreshServerBooked(); }
   function closeCalendarModal(){ calendarModal.hidden = true; }
 
   document.getElementById('bookingModalClose').addEventListener('click', closeBookingModal);
@@ -251,13 +264,14 @@ links.querySelectorAll('a').forEach(function(a){
   function bookedFor(key){
     var manual = MANUAL_BOOKED[key] || [];
     var local = loadLocalBookings()[key] || [];
+    var server = serverBooked[key] || [];
     var outlook = slotsFor(new Date(key + 'T00:00:00')).filter(function(t){ return busyInOutlook(key, t); });
-    return manual.concat(local, outlook);
+    return manual.concat(local, server, outlook);
   }
 
   function slotsFor(dateObj){
     var hours = BUSINESS_HOURS[dateObj.getDay()];
-    if (!hours) return [];
+    if (!hours || CLOSED_DAYS.indexOf(dateKey(dateObj)) !== -1) return [];
     var slots = [];
     var now = new Date();
     var isToday = dateKey(dateObj) === dateKey(now);
@@ -361,6 +375,51 @@ links.querySelectorAll('a').forEach(function(a){
     })
     .catch(function(){});
 
+  function markServerBooked(key, time){
+    serverBooked[key] = serverBooked[key] || [];
+    if (serverBooked[key].indexOf(time) === -1) serverBooked[key].push(time);
+  }
+
+  function refreshServerBooked(){
+    return fetch(SLOTS_API + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function(res){ return res.ok ? res.json() : null; })
+      .then(function(data){
+        if (!data || !data.booked) return;
+        serverBooked = data.booked;
+        if (selectedDay && selectedTime && bookedFor(dateKey(selectedDay)).indexOf(selectedTime) !== -1){
+          selectedTime = null;
+        }
+        renderDays();
+        renderSlots();
+      })
+      .catch(function(){});
+  }
+  refreshServerBooked();
+
+  // Bloque le créneau côté serveur avant d'envoyer l'email.
+  // Résout avec { token } si le créneau est obtenu, { taken: true } s'il vient d'être
+  // pris par quelqu'un d'autre, ou {} si le service est injoignable (on envoie quand même).
+  function reserveSlot(key, time){
+    return fetch(SLOTS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date: key, time: time })
+    }).then(function(res){
+      if (res.status === 409) return { taken: true };
+      if (!res.ok) return {};
+      return res.json().catch(function(){ return {}; });
+    }).catch(function(){ return {}; });
+  }
+
+  function releaseSlot(key, time, token){
+    if (!token) return;
+    fetch(SLOTS_API, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date: key, time: time, token: token })
+    }).catch(function(){});
+  }
+
   bookingForm.addEventListener('submit', function(e){
     e.preventDefault();
     if (!selectedDay || !selectedTime){
@@ -378,6 +437,8 @@ links.querySelectorAll('a').forEach(function(a){
     var payload = new FormData(bookingForm);
     var bookedDay = selectedDay;
     var bookedTime = selectedTime;
+    var bookedKey = dateKey(bookedDay);
+    var reservation = {};
 
     // Lien à cliquer dans l'email reçu : ouvre le rendez-vous pré-rempli dans Outlook,
     // il ne reste qu'à l'enregistrer pour que le créneau se bloque sur le site.
@@ -394,13 +455,22 @@ links.querySelectorAll('a').forEach(function(a){
     payload.append('Ajouter à mon agenda Outlook', outlookLink);
     payload.append('Version', '2');
 
-    fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: payload
+    reserveSlot(bookedKey, bookedTime).then(function(r){
+      reservation = r;
+      if (r.taken){
+        var err = new Error('taken');
+        err.taken = true;
+        throw err;
+      }
+      return fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: payload
+      });
     }).then(function(res){
       if (!res.ok) throw new Error('network');
-      saveLocalBooking(dateKey(bookedDay), bookedTime);
+      saveLocalBooking(bookedKey, bookedTime);
+      markServerBooked(bookedKey, bookedTime);
       formStatus.className = 'form-status show ok';
       formStatus.textContent = I18N.successMsg;
       bookingForm.reset();
@@ -412,8 +482,23 @@ links.querySelectorAll('a').forEach(function(a){
         closeBookingModal();
         recap.textContent = I18N.recapDefault;
       }, 2500);
-    }).catch(function(){
+    }).catch(function(err){
       formStatus.className = 'form-status show err';
+      if (err && err.taken){
+        // Quelqu'un vient de prendre ce créneau : on le retire et on rouvre le calendrier.
+        formStatus.textContent = I18N.takenMsg;
+        markServerBooked(bookedKey, bookedTime);
+        selectedTime = null;
+        renderDays();
+        renderSlots();
+        setTimeout(function(){
+          closeBookingModal();
+          openCalendarModal();
+        }, 3000);
+        return;
+      }
+      // L'email n'est pas parti : on libère le créneau pour que le client puisse réessayer.
+      releaseSlot(bookedKey, bookedTime, reservation.token);
       formStatus.textContent = I18N.errorMsg;
     }).finally(function(){
       submitBtn.disabled = false;
