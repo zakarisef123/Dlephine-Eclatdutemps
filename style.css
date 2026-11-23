@@ -1176,6 +1176,13 @@
   .blog-article .key-facts ul{margin:0 0 16px;}
   .blog-article .key-facts li{font-size:.98rem;}
 
+  /* ---------- Tableau des tarifs (page Prix) ---------- */
+  .price-table-wrap{overflow-x:auto;margin:22px 0 26px;}
+  .price-table{width:100%;border-collapse:collapse;background:#fff;font-size:.98rem;}
+  .price-table th,.price-table td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;}
+  .price-table th{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .price-table td:last-child,.price-table th:last-child{text-align:right;white-space:nowrap;}
+
   /* ---------- Accueil : nos soins à Genève ---------- */
   .home-services{padding:90px 0 40px;}
   .home-services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
