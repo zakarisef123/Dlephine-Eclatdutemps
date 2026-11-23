@@ -1,0 +1,42 @@
+# Redirections permanentes (301) : une seule adresse par page pour Google.
+# Les adresses sans .html renvoient vers l'adresse canonique en .html
+# (les paramètres comme rwg_token de « Réserver avec Google » sont conservés).
+/acupuncture-esthetique-geneve            /acupuncture-esthetique-geneve.html  301
+/bienfaits                                /bienfaits.html  301
+/bienfaitsen                              /bienfaitsen.html  301
+/blog                                     /blog.html  301
+/blogacupuncture                          /blogacupuncture.html  301
+/blogacupunctureen                        /blogacupunctureen.html  301
+/blogbienfaitskobido                      /blogbienfaitskobido.html  301
+/blogbienfaitskobidoen                    /blogbienfaitskobidoen.html  301
+/blogen                                   /blogen.html  301
+/blogfrequence                            /blogfrequence.html  301
+/blogfrequenceen                          /blogfrequenceen.html  301
+/blogkobido                               /blogkobido.html  301
+/blogkobidoen                             /blogkobidoen.html  301
+/blogliftingnaturel                       /blogliftingnaturel.html  301
+/blogliftingnaturelen                     /blogliftingnaturelen.html  301
+/blogseance                               /blogseance.html  301
+/blogseanceen                             /blogseanceen.html  301
+/booking                                  /booking.html  301
+/contact                                  /contact.html  301
+/contacten                                /contacten.html  301
+/cosmetic-acupuncture-geneva              /cosmetic-acupuncture-geneva.html  301
+/deroulement                              /deroulement.html  301
+/deroulementen                            /deroulementen.html  301
+/faq                                      /faq.html  301
+/faqen                                    /faqen.html  301
+/indexen                                  /indexen.html  301
+/kobido-massage-geneva                    /kobido-massage-geneva.html  301
+/kobido-price-geneva                      /kobido-price-geneva.html  301
+/lifting-naturel-geneve                   /lifting-naturel-geneve.html  301
+/massage-kobido-geneve                    /massage-kobido-geneve.html  301
+/natural-facelift-geneva                  /natural-facelift-geneva.html  301
+/philosophie                              /philosophie.html  301
+/philosophieen                            /philosophieen.html  301
+/prix-kobido-geneve                       /prix-kobido-geneve.html  301
+/reservation                              /reservation.html  301
+/soin                                     /soin.html  301
+/soinen                                   /soinen.html  301
+/techniques                               /techniques.html  301
+/techniquesen                             /techniquesen.html  301
