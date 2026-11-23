@@ -18,7 +18,7 @@ const TZ = "Europe/Zurich";
 // Doit correspondre à BUSINESS_HOURS dans script.js (0 = dimanche, 6 = samedi).
 const BUSINESS_HOURS = { 0: [9, 18], 6: [9, 18] };
 // Jours de fermeture exceptionnelle : à garder identique à CLOSED_DAYS dans script.js.
-const CLOSED_DAYS = ["2026-11-28", "2026-11-29"];
+const CLOSED_DAYS = ["2026-11-28", "2026-11-29", "2026-12-12", "2026-12-13"];
 // Ouvertures exceptionnelles en semaine : à garder identique à EXTRA_DAYS dans script.js.
 const EXTRA_DAYS = {
   "2026-12-07": [10, 14], "2026-12-08": [10, 14], "2026-12-09": [10, 14],
