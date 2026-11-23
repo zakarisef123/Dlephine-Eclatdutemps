@@ -185,7 +185,7 @@ links.querySelectorAll('a').forEach(function(a){
 
   // Jours de fermeture exceptionnelle (absence, congés) : aucun créneau proposé.
   // À garder identique à CLOSED_DAYS dans netlify/functions/slots.mjs.
-  var CLOSED_DAYS = ["2026-11-28", "2026-11-29"];
+  var CLOSED_DAYS = ["2026-11-28", "2026-11-29", "2026-12-12", "2026-12-13"];
 
   // Ouvertures exceptionnelles en semaine : "AAAA-MM-JJ": [heure du 1er créneau, heure de fin].
   // [10, 14] = créneaux 10h, 11h, 12h, 13h. [9, 19] = créneaux de 9h à 18h (fin 19h).
