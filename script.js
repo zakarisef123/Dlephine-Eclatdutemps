@@ -187,6 +187,19 @@ links.querySelectorAll('a').forEach(function(a){
   // À garder identique à CLOSED_DAYS dans netlify/functions/slots.mjs.
   var CLOSED_DAYS = ["2026-11-28", "2026-11-29"];
 
+  // Ouvertures exceptionnelles en semaine : "AAAA-MM-JJ": [heure du 1er créneau, heure de fin].
+  // [10, 14] = créneaux 10h, 11h, 12h, 13h. [9, 19] = créneaux de 9h à 18h (fin 19h).
+  // À garder identique à EXTRA_DAYS dans netlify/functions/slots.mjs.
+  var EXTRA_DAYS = {
+    "2026-12-07": [10, 14], "2026-12-08": [10, 14], "2026-12-09": [10, 14],
+    "2026-12-10": [10, 14], "2026-12-11": [10, 14],
+    "2026-12-14": [9, 19], "2026-12-15": [9, 19], "2026-12-16": [9, 19],
+    "2026-12-17": [9, 19], "2026-12-18": [9, 19]
+  };
+  function hoursFor(dateObj){
+    return EXTRA_DAYS[dateKey(dateObj)] || BUSINESS_HOURS[dateObj.getDay()];
+  }
+
   // Plages occupées de l'agenda Outlook de Delphine, copiées automatiquement toutes les
   // 30 minutes dans busy.json par .github/workflows/sync-calendar.yml.
   var BUSY_URL = 'busy.json';
@@ -270,7 +283,7 @@ links.querySelectorAll('a').forEach(function(a){
   }
 
   function slotsFor(dateObj){
-    var hours = BUSINESS_HOURS[dateObj.getDay()];
+    var hours = hoursFor(dateObj);
     if (!hours || CLOSED_DAYS.indexOf(dateKey(dateObj)) !== -1) return [];
     var slots = [];
     var now = new Date();
@@ -289,7 +302,7 @@ links.querySelectorAll('a').forEach(function(a){
     for (var i = 0; out.length < DAYS_AHEAD && i < 60; i++){
       var day = new Date(base.getTime());
       day.setDate(day.getDate() + i);
-      if (BUSINESS_HOURS[day.getDay()]) out.push(day);
+      if (hoursFor(day)) out.push(day);
     }
     return out;
   }
