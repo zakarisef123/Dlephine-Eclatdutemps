@@ -19,6 +19,13 @@ const TZ = "Europe/Zurich";
 const BUSINESS_HOURS = { 0: [9, 18], 6: [9, 18] };
 // Jours de fermeture exceptionnelle : à garder identique à CLOSED_DAYS dans script.js.
 const CLOSED_DAYS = ["2026-11-28", "2026-11-29"];
+// Ouvertures exceptionnelles en semaine : à garder identique à EXTRA_DAYS dans script.js.
+const EXTRA_DAYS = {
+  "2026-12-07": [10, 14], "2026-12-08": [10, 14], "2026-12-09": [10, 14],
+  "2026-12-10": [10, 14], "2026-12-11": [10, 14],
+  "2026-12-14": [9, 19], "2026-12-15": [9, 19], "2026-12-16": [9, 19],
+  "2026-12-17": [9, 19], "2026-12-18": [9, 19],
+};
 const MAX_DAYS_AHEAD = 70;
 const RELEASE_WINDOW_MS = 15 * 60 * 1000;
 
@@ -43,7 +50,7 @@ function validSlot(date, time) {
   if (typeof time !== "string" || !/^\d{2}:00$/.test(time)) return false;
   const day = new Date(`${date}T00:00:00Z`);
   if (Number.isNaN(day.getTime()) || day.toISOString().slice(0, 10) !== date) return false;
-  const hours = BUSINESS_HOURS[day.getUTCDay()];
+  const hours = EXTRA_DAYS[date] || BUSINESS_HOURS[day.getUTCDay()];
   const h = Number(time.slice(0, 2));
   if (!hours || h < hours[0] || h >= hours[1]) return false;
   if (CLOSED_DAYS.includes(date)) return false;
