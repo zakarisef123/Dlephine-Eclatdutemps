@@ -44,6 +44,16 @@
     wait_for_update: 500
   });
 </script>
+<!-- Balise Google (gtag.js) - Google Ads AW-18520211677 : mesure des conversions
+     (réservations, appels, contact). Respecte le Consent Mode v2 défini ci-dessus :
+     aucun cookie publicitaire tant que le visiteur n'a pas accepté « Marketing ». -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18520211677"></script>
+<script>
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+  gtag('js', new Date());
+  gtag('config', 'AW-18520211677', { allow_enhanced_conversions: true });
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -313,7 +323,7 @@
         <strong>Marketing</strong>
         <label class="switch"><input type="checkbox" id="consentMarketing"><span class="slider"></span></label>
       </div>
-      <p>Non utilisé actuellement sur ce site. Réservé pour de futures campagnes publicitaires.</p>
+      <p>Google Ads : mesure anonyme des réservations, appels et contacts issus de nos annonces Google, pour en évaluer l'efficacité. Désactivé tant que vous ne l'acceptez pas.</p>
     </div>
 
     <p class="consent-legal">
@@ -331,7 +341,7 @@
   </div>
 </div>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 
 </body>
 </html>
