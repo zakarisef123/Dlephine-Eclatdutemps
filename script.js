@@ -49,6 +49,58 @@ links.querySelectorAll('a').forEach(function(a){
   });
 });
 
+/* ---------- Suivi des conversions Google Ads (AW-18520211677) ----------
+   La balise Google est chargée dans le <head> de chaque page. Les envois ci-dessous
+   respectent le Consent Mode v2 : sans accord « Marketing », Google ne reçoit qu'un
+   signal anonyme sans cookie. */
+var ADS_ID = 'AW-18520211677';
+var ADS_CONVERSIONS = {
+  booking:      { label: 'R-lLCOi8k8AdEN2BkP9E', value: 139 }, // RDV - Réservation en ligne (principale)
+  calendarOpen: { label: 'BZTaCOu8k8AdEN2BkP9E' },             // RDV - Ouverture du calendrier (secondaire)
+  phoneClick:   { label: 'GZpmCO68k8AdEN2BkP9E', value: 139 }, // Appel - Clic sur le numéro (principale)
+  emailClick:   { label: 'Xh8FCOm9k8AdEN2BkP9E' },             // Contact - Clic e-mail (secondaire)
+  mapsClick:    { label: 'FcKLCOy9k8AdEN2BkP9E' }              // Itinéraire - Clic Google Maps (secondaire)
+};
+
+function trackConversion(name, extra){
+  var c = ADS_CONVERSIONS[name];
+  if (!c || typeof window.gtag !== 'function') return;
+  var params = { send_to: ADS_ID + '/' + c.label };
+  if (c.value){ params.value = c.value; params.currency = 'CHF'; }
+  if (extra){ for (var k in extra){ if (Object.prototype.hasOwnProperty.call(extra, k)) params[k] = extra[k]; } }
+  gtag('event', 'conversion', params);
+}
+
+function hasMarketingConsent(){
+  try{
+    var s = JSON.parse(localStorage.getItem('edt_consent_v1') || 'null');
+    return !!(s && s.marketing);
+  }catch(e){ return false; }
+}
+
+// Conversions améliorées : email / téléphone du formulaire, hachés par Google,
+// transmis uniquement si le visiteur a accepté les cookies marketing.
+function setEnhancedConversionData(email, phone){
+  if (!hasMarketingConsent() || typeof window.gtag !== 'function') return;
+  var data = {};
+  if (email) data.email = String(email).trim().toLowerCase();
+  var p = String(phone || '').replace(/[^\d+]/g, '');
+  if (p.indexOf('00') === 0) p = '+' + p.slice(2);
+  else if (/^0\d{9}$/.test(p)) p = '+41' + p.slice(1); // numéro suisse saisi au format national
+  if (/^\+\d{8,15}$/.test(p)) data.phone_number = p;
+  if (data.email || data.phone_number) gtag('set', 'user_data', data);
+}
+
+// Clics sur téléphone, e-mail et Google Maps : un seul écouteur pour tous les liens du site.
+document.addEventListener('click', function(e){
+  var a = e.target.closest ? e.target.closest('a[href]') : null;
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  if (href.indexOf('tel:') === 0) trackConversion('phoneClick');
+  else if (href.indexOf('mailto:') === 0 || href.indexOf('/cdn-cgi/l/email-protection') !== -1) trackConversion('emailClick');
+  else if (/google\.[a-z.]+\/maps|maps\.app\.goo\.gl|goo\.gl\/maps/.test(href)) trackConversion('mapsClick');
+}, true);
+
 /* ---------- Gestion du consentement RGPD (bandeau + Google Consent Mode v2) ---------- */
 (function(){
   var CONSENT_KEY = 'edt_consent_v1';
@@ -247,6 +299,7 @@ links.querySelectorAll('a').forEach(function(a){
     el.addEventListener('click', function(e){
       e.preventDefault();
       openCalendarModal();
+      trackConversion('calendarOpen');
     });
   });
 
@@ -482,6 +535,9 @@ links.querySelectorAll('a').forEach(function(a){
       });
     }).then(function(res){
       if (!res.ok) throw new Error('network');
+      // Conversion Google Ads « RDV - Réservation en ligne » : uniquement quand la demande est bien partie.
+      setEnhancedConversionData(document.getElementById('bkEmail').value, document.getElementById('bkPhone').value);
+      trackConversion('booking', { transaction_id: 'rdv-' + bookedKey + '-' + bookedTime });
       saveLocalBooking(bookedKey, bookedTime);
       markServerBooked(bookedKey, bookedTime);
       formStatus.className = 'form-status show ok';
