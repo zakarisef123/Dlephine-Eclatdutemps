@@ -14,7 +14,8 @@ var I18N = {
     submitDefault: 'Envoyer ma demande',
     successMsg: "Votre demande de rendez-vous a bien été envoyée. Delphine vous confirme votre créneau par retour d'email ou de téléphone.",
     errorMsg: "Une erreur est survenue lors de l'envoi. Vous pouvez aussi nous contacter directement au +41 78 265 49 25 ou par email.",
-    takenMsg: "Désolé, ce créneau vient d'être réservé par une autre personne. Merci d'en choisir un autre."
+    takenMsg: "Désolé, ce créneau vient d'être réservé par une autre personne. Merci d'en choisir un autre.",
+    thanksRecap: 'Delphine a bien reçu votre demande pour le '
   },
   en: {
     weekdays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
@@ -30,7 +31,8 @@ var I18N = {
     submitDefault: 'Send my request',
     successMsg: "Your appointment request has been sent. Delphine will confirm your slot by email or phone.",
     errorMsg: 'Something went wrong while sending. You can also reach us directly at +41 78 265 49 25 or by email.',
-    takenMsg: 'Sorry, this time slot has just been booked by someone else. Please choose another one.'
+    takenMsg: 'Sorry, this time slot has just been booked by someone else. Please choose another one.',
+    thanksRecap: 'Delphine has received your request for '
   }
 }[LANG];
 
@@ -90,6 +92,22 @@ function setEnhancedConversionData(email, phone){
   if (/^\+\d{8,15}$/.test(p)) data.phone_number = p;
   if (data.email || data.phone_number) gtag('set', 'user_data', data);
 }
+
+// Page Merci (merci.html / thank-you.html) : compte la réservation une seule fois.
+var PENDING_BOOKING_KEY = 'edt_pending_booking';
+(function(){
+  var thanks = document.querySelector('[data-thanks-page]');
+  if (!thanks) return;
+  var pending = null;
+  try{
+    pending = JSON.parse(sessionStorage.getItem(PENDING_BOOKING_KEY) || 'null');
+    sessionStorage.removeItem(PENDING_BOOKING_KEY); // un rafraîchissement ne recompte pas
+  }catch(e){}
+  if (!pending) return;
+  if (pending.recap) thanks.textContent = I18N.thanksRecap + pending.recap + '.';
+  setEnhancedConversionData(pending.email, pending.phone);
+  trackConversion('booking', { transaction_id: pending.id });
+})();
 
 // Clics sur téléphone, e-mail et Google Maps : un seul écouteur pour tous les liens du site.
 document.addEventListener('click', function(e){
@@ -535,9 +553,23 @@ document.addEventListener('click', function(e){
       });
     }).then(function(res){
       if (!res.ok) throw new Error('network');
-      // Conversion Google Ads « RDV - Réservation en ligne » : uniquement quand la demande est bien partie.
-      setEnhancedConversionData(document.getElementById('bkEmail').value, document.getElementById('bkPhone').value);
-      trackConversion('booking', { transaction_id: 'rdv-' + bookedKey + '-' + bookedTime });
+      // Conversion Google Ads « RDV - Réservation en ligne » : comptée sur la page Merci,
+      // uniquement quand on y arrive juste après un envoi réussi (pas en visite directe).
+      var thanksUrl = LANG === 'en' ? 'thank-you.html' : 'merci.html';
+      var pending = {
+        id: 'rdv-' + bookedKey + '-' + bookedTime,
+        recap: document.getElementById('fieldDate').value + I18N.recapAt + bookedTime,
+        email: document.getElementById('bkEmail').value,
+        phone: document.getElementById('bkPhone').value
+      };
+      var redirectToThanks = true;
+      try{ sessionStorage.setItem(PENDING_BOOKING_KEY, JSON.stringify(pending)); }
+      catch(e){
+        // Stockage indisponible (navigation privée stricte) : on compte la conversion ici.
+        redirectToThanks = false;
+        setEnhancedConversionData(pending.email, pending.phone);
+        trackConversion('booking', { transaction_id: pending.id });
+      }
       saveLocalBooking(bookedKey, bookedTime);
       markServerBooked(bookedKey, bookedTime);
       formStatus.className = 'form-status show ok';
@@ -548,9 +580,10 @@ document.addEventListener('click', function(e){
       renderDays();
       renderSlots();
       setTimeout(function(){
+        if (redirectToThanks){ window.location.href = thanksUrl; return; }
         closeBookingModal();
         recap.textContent = I18N.recapDefault;
-      }, 2500);
+      }, 1200);
     }).catch(function(err){
       formStatus.className = 'form-status show err';
       if (err && err.taken){
